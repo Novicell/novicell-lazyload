@@ -1,0 +1,32 @@
+{
+  "name": "novicell-lazyload",
+  "version": "1.0.0",
+  "description": "Novicell script for lazyloading images.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Novicell/novicell-lazyload.git/."
+  },
+  "keywords": [
+    "lazyload",
+    "images",
+    "novicell"
+  ],
+  "author": "Danni Larsen <dla@novicell.dk>",
+  "contributors": [{
+      "name": "Jonas Havmøller",
+      "email": "jha@novicell.dk"
+    },
+    {
+      "name": "Henrik Reinbach Madsen",
+      "email": "hrm@novicell.dk"
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "lazysizes": "4.0.1"
+  }
+}
