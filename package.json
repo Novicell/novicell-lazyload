@@ -1,6 +1,6 @@
 {
   "name": "novicell-lazyload",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Novicell script for lazyloading images.",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,8 @@
     "novicell"
   ],
   "author": "Danni Larsen <dla@novicell.dk>",
-  "contributors": [{
+  "contributors": [
+    {
       "name": "Jonas Havmøller",
       "email": "jha@novicell.dk"
     },
