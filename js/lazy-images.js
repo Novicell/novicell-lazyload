@@ -3,6 +3,7 @@
 /**
 * @name Novicell Dynamic Image
 * @author Jonas Havmøller & Danni Larsen
+* @description Adds eventlisteners for lazysizes and more
 */
 
 
