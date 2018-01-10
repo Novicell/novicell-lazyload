@@ -30,7 +30,7 @@ novicell.lazyload = novicell.lazyload || function (e) {
     var preventLoad = target.classList.contains('lazyload-measure') || target.classList.contains('lazyload-bg'); 
     var setMeasuredUrl = target.classList.contains('lazyload-measure');
     var setSrcSet = target.hasAttribute('data-srcset') && target.hasAttribute('data-query-obj');
-    var srcSrc = target.hasAttribute('data-src') && target.hasAttribute('data-query-obj');
+    var setSrc = target.hasAttribute('data-src') && target.hasAttribute('data-query-obj');
 
     if(preventLoad) {
         e.preventDefault();
