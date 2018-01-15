@@ -23,7 +23,7 @@ window.lazySizesConfig.expand = 1000;
 novicell.lazyload = novicell.lazyload || function (e) {
     // IE Fix
     e.preventDefault = function () {
-        Object.defineProperty(this, "defaultPrevented", {get: function () {return true;}});
+        Object.defineProperty(this, 'defaultPrevented', {get: function () {return true;}});
     };
     
     var target = e.target;
@@ -41,7 +41,8 @@ novicell.lazyload = novicell.lazyload || function (e) {
         var url = novicell.dynamicImage.getUrl(target);
         
         if(setBg) {
-            target.parentNode.style.backgroundImage = 'url(' + url + ')';       
+            target.parentNode.style.backgroundImage = 'url(' + url + ')';   
+            target.style.visibility = 'hidden';
         } else {
             target.src = url;
         }
@@ -49,7 +50,7 @@ novicell.lazyload = novicell.lazyload || function (e) {
     }
     else if(setSrcSet) {
         var query = target.getAttribute('data-query-obj');
-        var srcset = target.getAttribute('data-srcset').split(",");
+        var srcset = target.getAttribute('data-srcset').split(',');
         var src = target.getAttribute('data-src');
         var newSrcset = [];
         
@@ -80,7 +81,7 @@ novicell.lazyload = novicell.lazyload || function (e) {
 /*
 *   Check images
 */
-var checkImages = debounce(function() {
+var checkImages = function() {
     if (window.innerWidth > lastRefreshWidth + refreshWidth || window.innerWidth < lastRefreshWidth - refreshWidth) {
         var loadedElements = document.body.querySelectorAll('.lazyloaded');
         loadedElements.forEach(function(el){
@@ -89,25 +90,6 @@ var checkImages = debounce(function() {
         });
         lastRefreshWidth = window.innerWidth;
     };
-}, 100, false);
-
-
-/*
-*   Debounce
-*/
-function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		var later = function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
 };
 
 
@@ -115,4 +97,4 @@ function debounce(func, wait, immediate) {
 *   Eventlisteners
 */
 document.addEventListener('lazybeforeunveil', novicell.lazyload, true);
-window.addEventListener('resize', checkImages);
+window.addEventListener('resize', novicell.debounce(checkImages), 100, false);
