@@ -28,7 +28,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "lazysizes": "4.0.1",
+    "lazysizes": "4.0.4",
     "novicell-debounce": "^1.0.0"
   }
 }
