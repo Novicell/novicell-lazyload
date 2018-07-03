@@ -1,4 +1,7 @@
 # Novicell Lazyload
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Novicell/novicell-lazyload.svg)](https://greenkeeper.io/)
+
 **Image lazyloading script in vanilla javascript**
 
 
