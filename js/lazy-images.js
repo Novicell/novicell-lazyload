@@ -83,11 +83,13 @@ novicell.lazyload = novicell.lazyload || function (e) {
 */
 var checkImages = function() {
     if (window.innerWidth > lastRefreshWidth + refreshWidth || window.innerWidth < lastRefreshWidth - refreshWidth) {
-        var loadedElements = document.body.querySelectorAll('.lazyloaded');
-        loadedElements.forEach(function(el){
-            el.classList.remove('lazyloaded');
-            el.classList.add('lazyload');
-        });
+        var loadedElements = Array.from(document.body.querySelectorAll('.lazyloaded'));
+        if(loadedElements.length > 0) {
+            loadedElements.map(function(el){
+                el.classList.remove('lazyloaded');
+                el.classList.add('lazyload');
+            });
+        }
         lastRefreshWidth = window.innerWidth;
     };
 };
