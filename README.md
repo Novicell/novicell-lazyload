@@ -58,6 +58,23 @@ This feature will get the size of the parent element, and add it as query string
 <img class="lazyload lazyload-measure" data-src="/dist/images/test.jpg" alt="Cool image" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}'/>
 ```
 
+### Using height ratio (or auto height)
+If you just want auto height you can add the attribute ´data-height-ratio="0"´
+You can also pass a height-ratio, this will set the size accordingly.
+
+**Useful height ratios**: 
+`0`: Auto height
+`0.5`: Half height as width
+`0.5625`: 16:9 format
+`0.625`: 16:10 format
+`1`: Square image
+`2`: Twice height as width
+
+```html
+<img class="lazyload lazyload-measure" data-src="/dist/images/test.jpg" alt="Cool image" data-height-ratio="0" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}' />
+```
+
+
 ### Background images (lazyload-bg)
 This uses the "measure"-feature only adding the image as a background image on the parent element, instead of an actual `<img>`-tag.
 
