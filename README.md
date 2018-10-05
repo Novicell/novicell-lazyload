@@ -74,6 +74,19 @@ You can also pass a height-ratio, this will set the size accordingly.
 <img class="lazyload lazyload-measure" data-src="/dist/images/test.jpg" alt="Cool image" data-height-ratio="0" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}' />
 ```
 
+### Placeholder skeleton
+You can add a placeholder skeleton, which shows a loading box until the image is loaded.
+It uses the `height-ratio` to calculate the size of the loading skeleton, so the `lazyload-measure` and `data-height-ratio` is required to make this work.
+Also remember to add styling for the box.
+You can find the default styling in the CSS folder.
+
+![Placeholder Skeleton Example](http://g.recordit.co/8z1Hn56pCM.gif)
+
+```html
+<img class="lazyload lazyload-measure lazyload-skeleton" data-height-ratio="1.5" data-src="https://source.unsplash.com/URnWOJX8wW4" alt="Tall Cat" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}' />
+```
+
+
 
 ### Background images (lazyload-bg)
 This uses the "measure"-feature only adding the image as a background image on the parent element, instead of an actual `<img>`-tag.
