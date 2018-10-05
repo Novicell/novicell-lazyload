@@ -11,18 +11,20 @@ var novicell = novicell || {};
 novicell.dynamicImage = novicell.dynamicImage || function () {
 
     function getUrl(el) {
-        var baseUrl = el.getAttribute('data-src');
-        var parentHeight = el.parentNode.innerHeight || el.parentNode.offsetHeight;
-        var parentWidth = el.parentNode.innerWidth || el.parentNode.offsetWidth;
-
         var pixelInterval = 50;
+        var baseUrl = el.getAttribute('data-src');
+        var heightRatio = el.getAttribute('data-height-ratio');
+        var parentWidth = el.parentNode.innerWidth || el.parentNode.offsetWidth;
         parentWidth = parentWidth !== null ? parentWidth + pixelInterval - (parentWidth % pixelInterval) : null; // round to the nearest 50
-        parentHeight = parentHeight !== null ? parentHeight + pixelInterval - (parentHeight % pixelInterval) : null; // round to the nearest 50
         
-        var parentAspectRatio = parentHeight / parentWidth;
-
+        if (!heightRatio) {
+            var parentHeight = el.parentNode.innerHeight || el.parentNode.offsetHeight;
+            parentHeight = parentHeight !== null ? parentHeight + pixelInterval - (parentHeight % pixelInterval) : null; // round to the nearest 50
+            heightRatio = parentHeight / parentWidth;
+        }
+       
         var width = parentWidth;
-        var height = width * parentAspectRatio;
+        var height = width * heightRatio;
 
         baseUrl += width ? nextQuerySign(baseUrl) + "width=" + width : "";
         baseUrl += height !== null ? nextQuerySign(baseUrl) + "height=" + height : "";
