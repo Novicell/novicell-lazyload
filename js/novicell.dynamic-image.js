@@ -26,6 +26,17 @@ novicell.dynamicImage = novicell.dynamicImage || function () {
         var width = parentWidth;
         var height = width * heightRatio;
 
+        // Create skeleton element
+        if(el.classList.contains('lazyload-skeleton')){
+            const skeleton = document.createElement('div');
+            skeleton.classList.add('lazyload-skeleton-placeholder');
+            skeleton.style.height = height + 'px';
+            skeleton.style.width = width + 'px';
+            skeleton.style.maxWidth = '100%';
+            el.parentNode.append(skeleton);
+            el.classList.add('lazyload-skeleton-loading');
+        }
+
         baseUrl += width ? nextQuerySign(baseUrl) + "width=" + width : "";
         baseUrl += height !== null ? nextQuerySign(baseUrl) + "height=" + height : "";
 

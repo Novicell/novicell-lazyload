@@ -1,0 +1,44 @@
+/* Images with the skeleton classes is hidden (the class gets removed on load) */
+.lazyloaded {
+  display: block;
+}
+
+.lazyload-skeleton-loading {
+    visibility: hidden;
+    height: 0;
+}
+
+/* Styling for the placeholder container */
+.lazyload-skeleton-placeholder {
+    padding: 30px;
+    background: #f6f7f8;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Creates skeleton loadingbar */
+.lazyload-skeleton-placeholder::before, .lazyload-skeleton-placeholder::after {
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1200px 100%;
+    content: '';
+    display: block;
+    height: 50px;
+    margin-bottom: 30px;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: skeleton;
+    animation-timing-function: linear;
+}
+.lazyload-skeleton-placeholder::after {
+    width: 75%;
+}
+
+@keyframes skeleton{
+    0%{
+        background-position: -600px 0
+    }
+    100%{
+        background-position: 600px 0
+    }
+}

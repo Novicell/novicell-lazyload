@@ -47,6 +47,23 @@ novicell.lazyload = novicell.lazyload || function (e) {
             target.src = url;
         }
 
+        if(target.classList.contains('lazyload-skeleton-loading')){
+
+            function loaded() {
+                target.classList.remove('lazyload-skeleton-loading');
+                const skeletonPlaceholder = target.parentNode.querySelector('.lazyload-skeleton-placeholder');
+                if(skeletonPlaceholder != null){
+                    skeletonPlaceholder.remove();
+                }
+            }
+                
+            if (target.complete) {
+                loaded();
+            } else {
+                target.addEventListener('load', loaded);
+            }
+        }
+
     }
     else if(setSrcSet) {
         var query = target.getAttribute('data-query-obj');

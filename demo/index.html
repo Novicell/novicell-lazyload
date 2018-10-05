@@ -10,7 +10,14 @@
         img { max-width: 100%; }
         section { min-height: 100vh; padding: 50px 20px; background-size: cover; background-position: center; }
         ::selection { background: aqua; color: deeppink; }
+        .wrapper {
+            margin-bottom: 30px;
+        }
     </style>
+
+    <!-- Default styling for lazyload skeleton -->
+    <link rel="stylesheet" type="text/css" href="../css/lazyload-skeleton.css">
+
 </head>
 
 <body>
@@ -41,6 +48,24 @@
         <p>This uses the "measure"-feature only adding the image as a background image on the parent element, instead of an actual `<img>`-tag.</p>
 
         <img class="lazyload lazyload-measure lazyload-bg" data-src="https://source.unsplash.com/uObolpEZuNk" alt="Lazy seal" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}'/>
+    </section>
+
+    <section>
+        <h2>Lazyloading skeleton</h2>
+        <p>If you add the class lazyload-skeleton, a placeholder skeleton will appear when loading.</p>
+        <p>This prevents that the page makes "jumps" when images loads.</p>
+        <p><i>NOTICE:</i> This requires lazyload-measure</p>
+        <div>
+            <div class="wrapper">
+                <img class="lazyload lazyload-measure lazyload-skeleton" data-height-ratio="0.66" data-src="https://source.unsplash.com/dQ5G0h7sLno" alt="Cat looking catty" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}' />
+            </div>
+            <div class="wrapper">
+                <img class="lazyload lazyload-measure lazyload-skeleton" data-height-ratio="1.5" data-src="https://source.unsplash.com/URnWOJX8wW4" alt="Tall Cat" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}' />
+            </div>
+            <div class="wrapper">
+                <img class="lazyload lazyload-measure lazyload-skeleton" data-height-ratio="0.66" data-src="https://source.unsplash.com/IbPxGLgJiMI" alt="Cat looking catty" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}' />
+            </div>
+        </div>
     </section>
 
     
