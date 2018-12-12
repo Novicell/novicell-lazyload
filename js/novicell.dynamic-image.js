@@ -5,11 +5,7 @@
 * @author Jonas Havmøller & Danni Larsen
 */
 
-
-var novicell = novicell || {};
-
-novicell.dynamicImage = novicell.dynamicImage || function () {
-
+const dynamicImage = function () {
     function getUrl(el) {
         var pixelInterval = 50;
         var baseUrl = el.getAttribute('data-src');
@@ -54,4 +50,6 @@ novicell.dynamicImage = novicell.dynamicImage || function () {
         queryUrl: queryUrl,
         getUrl: getUrl
     };
-}();
+}
+
+export default dynamicImage;
