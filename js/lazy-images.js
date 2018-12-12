@@ -6,7 +6,7 @@
 */
 
 import 'lazysizes';
-import debounce from 'novicell-debounce';
+import debounce from 'novicell-debounce/js/novicell.debounce';
 
 var lastRefreshWidth = 0;
 var refreshWidth = 50;
