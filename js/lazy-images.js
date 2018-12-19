@@ -83,7 +83,7 @@ novicell.lazyload = novicell.lazyload || function (e) {
 */
 var checkImages = function() {
     if (window.innerWidth > lastRefreshWidth + refreshWidth || window.innerWidth < lastRefreshWidth - refreshWidth) {
-        var loadedElements = Array.from(document.body.querySelectorAll('.lazyloaded'));
+        var loadedElements = Array.prototype.slice.call(document.body.querySelectorAll('.lazyloaded'));
         if(loadedElements.length > 0) {
             loadedElements.map(function(el){
                 el.classList.remove('lazyloaded');
