@@ -80,7 +80,7 @@ const NovicellLazyLoad = {
      *   Check images
      */
 
-    checkImages = function() {
+    checkImages: function() {
         if (window.innerWidth > lastRefreshWidth + refreshWidth || window.innerWidth < lastRefreshWidth - refreshWidth) {
             var loadedElements = Array.prototype.slice.call(document.body.querySelectorAll('.lazyloaded'));
             if(loadedElements.length > 0) {
