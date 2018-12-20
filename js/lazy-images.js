@@ -22,58 +22,56 @@ const NovicellLazyLoad = {
     lazyLoad: function (e) {
         // IE Fix
         e.preventDefault = function () {
-            Object.defineProperty(this, 'defaultPrevented', {
-                get: function () {
-                    return true;
-                }
-            });
+            Object.defineProperty(this, 'defaultPrevented', {get: function () {return true;}});
         };
-
+        
         var target = e.target;
-        var preventLoad = target.classList.contains('lazyload-measure') || target.classList.contains('lazyload-bg');
+        var preventLoad = target.classList.contains('lazyload-measure') || target.classList.contains('lazyload-bg'); 
         var setMeasuredUrl = target.classList.contains('lazyload-measure');
         var setSrcSet = target.hasAttribute('data-srcset') && target.hasAttribute('data-query-obj');
         var setSrc = target.hasAttribute('data-src') && target.hasAttribute('data-query-obj');
-
-        if (preventLoad) {
+    
+        if(preventLoad) {
             e.preventDefault();
         }
-
-        if (setMeasuredUrl) {
-            var setBg = target.classList.contains('lazyload-bg');
-            var url = dynamicImage().getUrl(target);
-
-            if (setBg) {
-                target.parentNode.style.backgroundImage = 'url(' + url + ')';
+    
+        if(setMeasuredUrl) {
+            var setBg = target.classList.contains('lazyload-bg');    
+            var url = novicell.dynamicImage.getUrl(target);
+            
+            if(setBg) {
+                target.parentNode.style.backgroundImage = 'url(' + url + ')';   
                 target.style.visibility = 'hidden';
             } else {
                 target.src = url;
             }
-
-        } else if (setSrcSet) {
+    
+        }
+        else if(setSrcSet) {
             var query = target.getAttribute('data-query-obj');
             var srcset = target.getAttribute('data-srcset').split(',');
             var src = target.getAttribute('data-src');
             var newSrcset = [];
-
-            srcset.forEach(function (src) {
+            
+            srcset.forEach(function(src){
                 src = src.trim();
                 src = src.split(' ');
-
+                
                 var url = src[0];
                 var bp = src[1];
-                var newSrc = dynamicImage().queryUrl(url, query);
+                var newSrc = novicell.dynamicImage.queryUrl(url, query);
                 // set new srcset
                 newSrcset.push(newSrc + ' ' + bp);
             });
-
+    
             target.setAttribute('srcset', newSrcset.join(', '));
-            target.setAttribute('src', dynamicImage().queryUrl(src, query));
-        } else if (setSrc) {
+            target.setAttribute('src', novicell.dynamicImage.queryUrl(src, query));
+        }
+        else if(setSrc) {
             var query = target.getAttribute('data-query-obj');
             var src = target.getAttribute('data-src');
-            var url = dynamicImage().queryUrl(src, query);
-
+            var url = novicell.dynamicImage.queryUrl(src, query);
+    
             target.setAttribute('src', url);
         }
     },
@@ -82,13 +80,15 @@ const NovicellLazyLoad = {
      *   Check images
      */
 
-    checkImages: function () {
+    checkImages = function() {
         if (window.innerWidth > lastRefreshWidth + refreshWidth || window.innerWidth < lastRefreshWidth - refreshWidth) {
-            var loadedElements = document.body.querySelectorAll('.lazyloaded');
-            loadedElements.forEach(function (el) {
-                el.classList.remove('lazyloaded');
-                el.classList.add('lazyload');
-            });
+            var loadedElements = Array.prototype.slice.call(document.body.querySelectorAll('.lazyloaded'));
+            if(loadedElements.length > 0) {
+                loadedElements.map(function(el){
+                    el.classList.remove('lazyloaded');
+                    el.classList.add('lazyload');
+                });
+            }
             lastRefreshWidth = window.innerWidth;
         };
     }
