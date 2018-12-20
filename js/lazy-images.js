@@ -14,8 +14,6 @@ var refreshWidth = 50;
 
 // Lazysizes config
 window.lazySizesConfig = window.lazySizesConfig || {};
-window.lazySizesConfig.expand = 1000;
-
 
 /*
 *   Lazyload
