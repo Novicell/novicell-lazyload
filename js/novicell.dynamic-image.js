@@ -52,4 +52,4 @@ const dynamicImage = function () {
     };
 }
 
-export default dynamicImage;
+export { dynamicImage };
