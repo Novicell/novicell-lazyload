@@ -8,29 +8,16 @@ Written in pure Vanilla JS, depends on [lazysizes](https://github.com/aFarkas/la
 ### Install with npm
 
 ```sh
-npm install novicell-lazyload --save
+npm install novicell-lazyload@next --save
+// or
+npm i novicell-lazyload@next
 ```
-
 
 ## Setup
-In this example `vendorPath` is the path to your *node_modules* folder.
-First add a new bundle with all the dependencies to your `gulp/config.js`-file, you can just copy/paste this shippet:
+Import novicell-lazyload as a module in your javascript file that observes the images:
 
 ```javascript
-{
-    name: 'lazy',
-    scripts: [
-        vendorPath + "novicell-debounce/js/novicell.debounce.js",
-        vendorPath + "novicell-lazyload/js/novicell.dynamic-image.js",
-        vendorPath + "novicell-lazyload/js/lazy-images.js",
-        vendorPath + "lazysizes/lazysizes.min.js"
-    ]
-}
-```
-
-Then include the js file in your HTML:
-```html
-    <script defer src="/dist/scripts/lazy.min.js"></script>
+import 'novicell-lazyload';
 ```
 
 ## Implementation

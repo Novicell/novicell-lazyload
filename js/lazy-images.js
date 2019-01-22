@@ -25,7 +25,6 @@ const NovicellLazyLoad = {
         e.preventDefault = function () {
             Object.defineProperty(this, 'defaultPrevented', {get: function () {return true;}});
         };
-        
         var target = e.target;
         var preventLoad = target.classList.contains('lazyload-measure') || target.classList.contains('lazyload-bg'); 
         var setMeasuredUrl = target.classList.contains('lazyload-measure');
@@ -37,7 +36,7 @@ const NovicellLazyLoad = {
         }
     
         if(setMeasuredUrl) {
-            var setBg = target.classList.contains('lazyload-bg');    
+            var setBg = target.classList.contains('lazyload-bg');
             var url = dynamicImage().getUrl(target);
             if(setBg) {
                 target.parentNode.style.backgroundImage = 'url(' + url + ')';   
@@ -45,8 +44,8 @@ const NovicellLazyLoad = {
             } else {
                 target.src = url;
             }
-    
         }
+
         else if(setSrcSet) {
             var query = target.getAttribute('data-query-obj');
             var srcset = target.getAttribute('data-srcset').split(',');
