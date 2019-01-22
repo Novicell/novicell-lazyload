@@ -9,7 +9,9 @@ Written in pure Vanilla JS, depends on [lazysizes](https://github.com/aFarkas/la
 
 ```sh
 npm install novicell-lazyload@next --save
-# or simply
+```
+Or simply:
+```sh
 npm i novicell-lazyload@next
 ```
 
