@@ -4,7 +4,7 @@
 * @author Jonas Havmøller & Danni Larsen
 * @description Adds eventlisteners for lazysizes and more
 */
-import('lazysizes');
+import 'lazysizes';
 import debounce from 'lodash/debounce';
 import {dynamicImage} from './novicell.dynamic-image';
 
