@@ -1,4 +1,4 @@
-# Novicell Lazyload
+# 💤 Novicell Lazyload
 **Image lazyloading script in vanilla javascript**
 
 ![npm package](https://img.shields.io/npm/v/novicell-lazyload.svg?colorB=c12127)
