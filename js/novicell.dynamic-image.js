@@ -5,6 +5,7 @@
 * @author Jonas Havmøller & Danni Larsen
 */
 
+// This is a function, and not an object, because it also returns a value.
 const dynamicImage = function () {
     function getUrl(el) {
         var pixelInterval = 50;
@@ -45,7 +46,7 @@ const dynamicImage = function () {
         }
         return url
     }
- 
+
     return {
         queryUrl: queryUrl,
         getUrl: getUrl

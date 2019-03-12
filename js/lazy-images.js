@@ -5,7 +5,6 @@
 * @description Adds eventlisteners for lazysizes and more
 */
 import 'lazysizes';
-import debounce from 'lodash/debounce';
 import {dynamicImage} from './novicell.dynamic-image';
 
 var lastRefreshWidth = 0;
@@ -25,6 +24,7 @@ const NovicellLazyLoad = {
         e.preventDefault = function () {
             Object.defineProperty(this, 'defaultPrevented', {get: function () {return true;}});
         };
+        
         var target = e.target;
         var preventLoad = target.classList.contains('lazyload-measure') || target.classList.contains('lazyload-bg'); 
         var setMeasuredUrl = target.classList.contains('lazyload-measure');
@@ -38,12 +38,17 @@ const NovicellLazyLoad = {
         if(setMeasuredUrl) {
             var setBg = target.classList.contains('lazyload-bg');
             var url = dynamicImage().getUrl(target);
-            if(setBg) {
-                target.parentNode.style.backgroundImage = 'url(' + url + ')';   
-                target.style.visibility = 'hidden';
-            } else {
-                target.src = url;
-            }
+            isSupportWebP(function(bool) {
+                if (bool) {
+                    url += "&format=webp"
+                }
+                if(setBg) {
+                    target.parentNode.style.backgroundImage = 'url(' + url + ')';   
+                    target.style.visibility = 'hidden';
+                } else {
+                    target.src = url;
+                }
+            });
         }
 
         else if(setSrcSet) {
@@ -51,20 +56,27 @@ const NovicellLazyLoad = {
             var srcset = target.getAttribute('data-srcset').split(',');
             var src = target.getAttribute('data-src');
             var newSrcset = [];
-            
-            srcset.forEach(function(src){
-                src = src.trim();
-                src = src.split(' ');
-                
-                var url = src[0];
-                var bp = src[1];
-                var newSrc = dynamicImage().queryUrl(url, query);
-                // set new srcset
-                newSrcset.push(newSrc + ' ' + bp);
+            isSupportWebP(function(bool) {
+                srcset.forEach(function(src){
+                    src = src.trim();
+                    src = src.split(' ');
+                    
+                    var url = src[0];
+                    var bp = src[1];
+                    var newSrc = dynamicImage().queryUrl(url, query);
+                    if (bool) {
+                        url += "&format=webp"
+                    }
+                    // set new srcset
+                    newSrcset.push(newSrc + ' ' + bp);
+                });
+
+                if (bool) {
+                    src += "&format=webp"
+                }
+                target.setAttribute('srcset', newSrcset.join(', '));
+                target.setAttribute('src', dynamicImage().queryUrl(src, query));
             });
-    
-            target.setAttribute('srcset', newSrcset.join(', '));
-            target.setAttribute('src', dynamicImage().queryUrl(src, query));
         }
         else if(setSrc) {
             var query = target.getAttribute('data-query-obj');
@@ -78,7 +90,6 @@ const NovicellLazyLoad = {
     /*
      *   Check images
      */
-
     checkImages: function() {
         if (window.innerWidth > lastRefreshWidth + refreshWidth || window.innerWidth < lastRefreshWidth - refreshWidth) {
             var loadedElements = Array.prototype.slice.call(document.body.querySelectorAll('.lazyloaded'));
@@ -95,8 +106,16 @@ const NovicellLazyLoad = {
 
 export default NovicellLazyLoad;
 
+function isSupportWebP(callback) {
+    var webP = new Image();
+    webP.src = 'data:image/webp;base64,UklGRi4AAABXRUJQVlA4TCEAAAAvAUAAEB8wAiMw' + 'AgSSNtse/cXjxyCCmrYNWPwmHRH9jwMA';
+    webP.onload = webP.onerror = function () {
+        callback(webP.height === 2);
+    };
+}
+
 /*
  *   Eventlisteners
  */
-document.addEventListener('lazybeforeunveil', NovicellLazyLoad.lazyLoad, true);
-window.addEventListener('resize', debounce(NovicellLazyLoad.checkImages), 100, false);
+// document.addEventListener('lazybeforeunveil', NovicellLazyLoad.lazyLoad, true);
+// window.addEventListener('resize', debounce(NovicellLazyLoad.checkImages), 100, false);
