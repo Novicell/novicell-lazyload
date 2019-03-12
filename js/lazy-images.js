@@ -58,9 +58,6 @@ novicell.lazyload = novicell.lazyload || function (e) {
         var newSrcset = [];
 
         isSupportWebP(function(bool) {
-            if (bool) {
-                url += "&format=webp"
-            }
             srcset.forEach(function(src) {
                 src = src.trim();
                 src = src.split(' ');
@@ -77,13 +74,13 @@ novicell.lazyload = novicell.lazyload || function (e) {
                 // set new srcset
                 newSrcset.push(newSrc + ' ' + bp);
             });
-                if (bool) {
-                    src += "&format=webp"
-                }
-                target.setAttribute('srcset', newSrcset.join(', '));
-                target.setAttribute('src', novicell.dynamicImage.queryUrl(src, query));
+            
+            if (bool) {
+                src += "&format=webp"
+            }
+            target.setAttribute('srcset', newSrcset.join(', '));
+            target.setAttribute('src', novicell.dynamicImage.queryUrl(src, query));
         });
-        
     }
     else if(setSrc) {
         var query = target.getAttribute('data-query-obj');
