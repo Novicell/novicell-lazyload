@@ -47,6 +47,7 @@ novicell.dynamicImage = novicell.dynamicImage || function () {
                 url += queryObj[key] !== null ? nextQuerySign(url) + key + "=" + queryObj[key] : "";
             });
         }
+
         return url
     }
  
