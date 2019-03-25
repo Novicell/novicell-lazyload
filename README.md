@@ -19,7 +19,7 @@ npm i novicell-lazyload@next
 Import novicell-lazyload as a module in your javascript file that observes the images. Also add debounce from lodash.
 
 ```javascript
-import NovicellLazyLoad from '../js/lazy-images';
+import NovicellLazyLoad from 'novicell-lazyload';
 import debounce from 'lodash/debounce';
 
 document.addEventListener('lazybeforeunveil', NovicellLazyLoad.lazyLoad, true);
