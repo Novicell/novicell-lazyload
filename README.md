@@ -22,9 +22,20 @@ Import novicell-lazyload as a module in your javascript file that observes the i
 import NovicellLazyLoad from 'novicell-lazyload';
 import debounce from 'lodash/debounce';
 
-document.addEventListener('lazybeforeunveil', NovicellLazyLoad.lazyLoad, true);
-window.addEventListener('resize', debounce(NovicellLazyLoad.checkImages), 100, false);
+const lazy = new NovicellLazyLoad({
+    includeWebp: true // optional  
+});
+
+document.addEventListener('lazybeforeunveil', function(event) {
+    lazy.lazyLoad(event);
+}, true);
+
+window.addEventListener('resize', function() {
+    debounce(lazy.checkImages());
+}, 100, false);
 ```
+## Options
+`includeWebp: true/false` Default true. Optional, but if it's set to true, Novicell-lazyload will still check if the client's browser supports WebP first. 
 
 ## Implementation
 This script *lazyloads* by swapping the `data-src` or `data-srcset` to an actual `src` or `srcset`.
