@@ -18,93 +18,91 @@ window.lazySizesConfig.expand = 1000;
  *   Lazyload
  */
 
-const NovicellLazyLoad = {
-    lazyLoad: function (e) {
-        // IE Fix
-        e.preventDefault = function () {
-            Object.defineProperty(this, 'defaultPrevented', {get: function () {return true;}});
-        };
+export default class NovicellLazyLoad {
+    constructor({includeWebp = true}) {
+        this.includeWebp = includeWebp;
+        this.lazyLoad = function(e) {
+            // IE Fix
+            e.preventDefault = function () {
+                Object.defineProperty(this, 'defaultPrevented', {get: function () {return true;}});
+            };
+            const webp = this.includeWebp;
+            
+            var target = e.target;
+            var preventLoad = target.classList.contains('lazyload-measure') || target.classList.contains('lazyload-bg'); 
+            var setMeasuredUrl = target.classList.contains('lazyload-measure');
+            var setSrcSet = target.hasAttribute('data-srcset') && target.hasAttribute('data-query-obj');
+            var setSrc = target.hasAttribute('data-src') && target.hasAttribute('data-query-obj');
         
-        var target = e.target;
-        var preventLoad = target.classList.contains('lazyload-measure') || target.classList.contains('lazyload-bg'); 
-        var setMeasuredUrl = target.classList.contains('lazyload-measure');
-        var setSrcSet = target.hasAttribute('data-srcset') && target.hasAttribute('data-query-obj');
-        var setSrc = target.hasAttribute('data-src') && target.hasAttribute('data-query-obj');
-    
-        if(preventLoad) {
-            e.preventDefault();
-        }
-    
-        if(setMeasuredUrl) {
-            var setBg = target.classList.contains('lazyload-bg');
-            var url = dynamicImage().getUrl(target);
-            isSupportWebP(function(bool) {
-                if (bool) {
-                    url += "&format=webp"
-                }
-                if(setBg) {
-                    target.parentNode.style.backgroundImage = 'url(' + url + ')';   
-                    target.style.visibility = 'hidden';
-                } else {
-                    target.src = url;
-                }
-            });
-        }
-
-        else if(setSrcSet) {
-            var query = target.getAttribute('data-query-obj');
-            var srcset = target.getAttribute('data-srcset').split(',');
-            var src = target.getAttribute('data-src');
-            var newSrcset = [];
-            isSupportWebP(function(bool) {
-                srcset.forEach(function(src){
-                    src = src.trim();
-                    src = src.split(' ');
-                    
-                    var url = src[0];
-                    var bp = src[1];
-                    var newSrc = dynamicImage().queryUrl(url, query);
-                    if (bool) {
+            if(preventLoad) {
+                e.preventDefault();
+            }
+        
+            if(setMeasuredUrl) {
+                var setBg = target.classList.contains('lazyload-bg');
+                var url = dynamicImage().getUrl(target);
+                isSupportWebP(function(bool) {
+                    if (bool && webp) {
                         url += "&format=webp"
                     }
-                    // set new srcset
-                    newSrcset.push(newSrc + ' ' + bp);
-                });
-
-                if (bool) {
-                    src += "&format=webp"
-                }
-                target.setAttribute('srcset', newSrcset.join(', '));
-                target.setAttribute('src', dynamicImage().queryUrl(src, query));
-            });
-        }
-        else if(setSrc) {
-            var query = target.getAttribute('data-query-obj');
-            var src = target.getAttribute('data-src');
-            var url = dynamicImage().queryUrl(src, query);
-    
-            target.setAttribute('src', url);
-        }
-    },
-
-    /*
-     *   Check images
-     */
-    checkImages: function() {
-        if (window.innerWidth > lastRefreshWidth + refreshWidth || window.innerWidth < lastRefreshWidth - refreshWidth) {
-            var loadedElements = Array.prototype.slice.call(document.body.querySelectorAll('.lazyloaded'));
-            if(loadedElements.length > 0) {
-                loadedElements.map(function(el){
-                    el.classList.remove('lazyloaded');
-                    el.classList.add('lazyload');
+                    if(setBg) {
+                        target.parentNode.style.backgroundImage = 'url(' + url + ')';   
+                        target.style.visibility = 'hidden';
+                    } else {
+                        target.src = url;
+                    }
                 });
             }
-            lastRefreshWidth = window.innerWidth;
-        };
+    
+            else if(setSrcSet) {
+                var query = target.getAttribute('data-query-obj');
+                var srcset = target.getAttribute('data-srcset').split(',');
+                var src = target.getAttribute('data-src');
+                var newSrcset = [];
+                isSupportWebP(function(bool) {
+                    srcset.forEach(function(src){
+                        src = src.trim();
+                        src = src.split(' ');
+                        
+                        var url = src[0];
+                        var bp = src[1];
+                        var newSrc = dynamicImage().queryUrl(url, query);
+                        if (bool && webp) {
+                            url += "&format=webp"
+                        }
+                        // set new srcset
+                        newSrcset.push(newSrc + ' ' + bp);
+                    });
+    
+                    if (bool && webp) {
+                        src += "&format=webp"
+                    }
+                    target.setAttribute('srcset', newSrcset.join(', '));
+                    target.setAttribute('src', dynamicImage().queryUrl(src, query));
+                });
+            }
+            else if(setSrc) {
+                var query = target.getAttribute('data-query-obj');
+                var src = target.getAttribute('data-src');
+                var url = dynamicImage().queryUrl(src, query);
+        
+                target.setAttribute('src', url);
+            }
+        }
+        this.checkImages = function() {
+            if (window.innerWidth > lastRefreshWidth + refreshWidth || window.innerWidth < lastRefreshWidth - refreshWidth) {
+                var loadedElements = Array.prototype.slice.call(document.body.querySelectorAll('.lazyloaded'));
+                if(loadedElements.length > 0) {
+                    loadedElements.map(function(el){
+                        el.classList.remove('lazyloaded');
+                        el.classList.add('lazyload');
+                    });
+                }
+                lastRefreshWidth = window.innerWidth;
+            };
+        }
     }
 }
-
-export default NovicellLazyLoad;
 
 function isSupportWebP(callback) {
     var webP = new Image();
