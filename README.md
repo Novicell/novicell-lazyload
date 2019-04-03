@@ -34,7 +34,11 @@ First add a new bundle with all the dependencies to your `gulp/config.js`-file, 
 
 Then include the js file in your HTML:
 ```html
-    <script></script>
+    <script>
+    window.lazySizesConfig = {
+        // Options . . .
+    }
+    </script>
     <script defer src="/dist/scripts/lazy.min.js"></script>
 ```
 
