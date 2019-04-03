@@ -11,7 +11,6 @@ var novicell = novicell || {};
 
 var lastRefreshWidth = 0;
 var refreshWidth = 50;
-console.log(window.lazySizesConfig);
 
 // Lazysizes config
 window.lazySizesConfig = window.lazySizesConfig || {};
@@ -19,6 +18,7 @@ window.lazySizesConfig.expand = 1000;
 if (window.lazySizesConfig["useWebp"] == undefined) {
     window.lazySizesConfig["useWebp"] = true
 }
+
 /*
 *   Lazyload
 */

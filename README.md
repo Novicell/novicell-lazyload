@@ -34,7 +34,16 @@ First add a new bundle with all the dependencies to your `gulp/config.js`-file, 
 
 Then include the js file in your HTML:
 ```html
+    <script></script>
     <script defer src="/dist/scripts/lazy.min.js"></script>
+```
+
+## Options
+
+```js
+window.lazySizesConfig = {
+    useWebp: true // Boolean (defaults to true). If true is used it will still check if browser supports WebP format and then add it
+}
 ```
 
 ## Implementation
