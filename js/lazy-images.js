@@ -11,12 +11,14 @@ var novicell = novicell || {};
 
 var lastRefreshWidth = 0;
 var refreshWidth = 50;
+console.log(window.lazySizesConfig);
 
 // Lazysizes config
 window.lazySizesConfig = window.lazySizesConfig || {};
 window.lazySizesConfig.expand = 1000;
-
-
+if (window.lazySizesConfig["useWebp"] == undefined) {
+    window.lazySizesConfig["useWebp"] = true
+}
 /*
 *   Lazyload
 */
@@ -40,7 +42,7 @@ novicell.lazyload = novicell.lazyload || function (e) {
         var setBg = target.classList.contains('lazyload-bg');
         var url = novicell.dynamicImage.getUrl(target);
         isSupportWebP(function(bool) {
-            if (bool) {
+            if (bool && window.lazySizesConfig.useWebp) {
                 url += "&format=webp"
             }
             if(setBg) {
@@ -65,7 +67,7 @@ novicell.lazyload = novicell.lazyload || function (e) {
                 var url = src[0];
                 var bp = src[1];
 
-                if (bool) {
+                if (bool && window.lazySizesConfig.useWebp) {
                     url += "&format=webp"
                 }
                 
@@ -75,7 +77,7 @@ novicell.lazyload = novicell.lazyload || function (e) {
                 newSrcset.push(newSrc + ' ' + bp);
             });
             
-            if (bool) {
+            if (bool && window.lazySizesConfig.useWebp) {
                 src += "&format=webp"
             }
             target.setAttribute('srcset', newSrcset.join(', '));
