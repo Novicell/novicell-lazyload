@@ -5,7 +5,7 @@
 * @description Adds eventlisteners for lazysizes and more
 */
 import 'lazysizes';
-import {dynamicImage} from './novicell.dynamic-image';
+import { dynamicImage } from './novicell.dynamic-image';
 
 var lastRefreshWidth = 0;
 var refreshWidth = 50;

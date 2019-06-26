@@ -6,7 +6,7 @@
 */
 
 // This is a function, and not an object, because it also returns a value.
-const dynamicImage = function () {
+export const dynamicImage = function () {
     function getUrl(el) {
         var pixelInterval = 50;
         var baseUrl = el.getAttribute('data-src');
@@ -52,5 +52,3 @@ const dynamicImage = function () {
         getUrl: getUrl
     };
 }
-
-export {dynamicImage};
