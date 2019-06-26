@@ -26,16 +26,6 @@ Import novicell-lazyload as a module in your javascript file that observes the i
 import NovicellLazyLoad from 'novicell-lazyload';
 import debounce from 'lodash/debounce';
 
-<<<<<<< HEAD
-Then include the js file in your HTML:
-```html
-    <script>
-    window.lazySizesConfig = {
-        // Options . . .
-    }
-    </script>
-    <script defer src="/dist/scripts/lazy.min.js"></script>
-=======
 const lazy = new NovicellLazyLoad({
     includeWebp: true // optional  
 });
@@ -47,7 +37,6 @@ document.addEventListener('lazybeforeunveil', function(event) {
 window.addEventListener('resize', function() {
     debounce(lazy.checkImages());
 }, 100, false);
->>>>>>> feature/modular-rework
 ```
 ## Options
 `includeWebp: true/false` Default true. Optional, but if it's set to true, Novicell-lazyload will still check if the client's browser supports WebP first. 
