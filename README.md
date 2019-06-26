@@ -12,26 +12,21 @@ Written in pure Vanilla JS, depends on [lazysizes](https://github.com/aFarkas/la
 ### Install with npm
 
 ```sh
-npm install novicell-lazyload --save
+npm install novicell-lazyload@next --save
 ```
-
+Or simply:
+```sh
+npm i novicell-lazyload@next
+```
 
 ## Setup
-In this example `vendorPath` is the path to your *node_modules* folder.
-First add a new bundle with all the dependencies to your `gulp/config.js`-file, you can just copy/paste this shippet:
+Import novicell-lazyload as a module in your javascript file that observes the images. Also add debounce from lodash.
 
 ```javascript
-{
-    name: 'lazy',
-    scripts: [
-        vendorPath + "novicell-debounce/js/novicell.debounce.js",
-        vendorPath + "novicell-lazyload/js/novicell.dynamic-image.js",
-        vendorPath + "novicell-lazyload/js/lazy-images.js",
-        vendorPath + "lazysizes/lazysizes.min.js"
-    ]
-}
-```
+import NovicellLazyLoad from 'novicell-lazyload';
+import debounce from 'lodash/debounce';
 
+<<<<<<< HEAD
 Then include the js file in your HTML:
 ```html
     <script>
@@ -40,7 +35,22 @@ Then include the js file in your HTML:
     }
     </script>
     <script defer src="/dist/scripts/lazy.min.js"></script>
+=======
+const lazy = new NovicellLazyLoad({
+    includeWebp: true // optional  
+});
+
+document.addEventListener('lazybeforeunveil', function(event) {
+    lazy.lazyLoad(event);
+}, true);
+
+window.addEventListener('resize', function() {
+    debounce(lazy.checkImages());
+}, 100, false);
+>>>>>>> feature/modular-rework
 ```
+## Options
+`includeWebp: true/false` Default true. Optional, but if it's set to true, Novicell-lazyload will still check if the client's browser supports WebP first. 
 
 ## Options
 

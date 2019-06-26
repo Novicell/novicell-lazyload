@@ -1,8 +1,12 @@
 {
   "name": "novicell-lazyload",
+<<<<<<< HEAD
   "version": "1.3.0",
+=======
+  "version": "2.1.3",
+>>>>>>> feature/modular-rework
   "description": "Novicell script for lazyloading images.",
-  "main": "index.js",
+  "main": "dist/lazy-images.cjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -33,6 +37,10 @@
   "license": "MIT",
   "dependencies": {
     "lazysizes": "4.0.1",
-    "novicell-debounce": "^1.0.0"
+    "novicell-debounce": "^2.0.0"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.8",
+    "lodash": "^4.17.11"
   }
 }

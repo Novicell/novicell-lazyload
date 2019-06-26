@@ -5,11 +5,8 @@
 * @author Jonas Havmøller & Danni Larsen
 */
 
-
-var novicell = novicell || {};
-
-novicell.dynamicImage = novicell.dynamicImage || function () {
-
+// This is a function, and not an object, because it also returns a value.
+export const dynamicImage = function () {
     function getUrl(el) {
         var pixelInterval = 50;
         var baseUrl = el.getAttribute('data-src');
@@ -50,9 +47,9 @@ novicell.dynamicImage = novicell.dynamicImage || function () {
 
         return url
     }
- 
+
     return {
         queryUrl: queryUrl,
         getUrl: getUrl
     };
-}();
+}
