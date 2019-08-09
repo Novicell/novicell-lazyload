@@ -32,11 +32,11 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "lazysizes": "4.0.1",
+    "lazysizes": "5.1.1",
     "novicell-debounce": "^2.0.0"
   },
   "devDependencies": {
-    "cssnano": "^4.1.8",
-    "lodash": "^4.17.11"
+    "cssnano": "^4.1.10",
+    "lodash": "^4.17.15"
   }
 }
