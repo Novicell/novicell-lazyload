@@ -35,7 +35,7 @@ document.addEventListener('lazybeforeunveil', function(event) {
 }, true);
 
 window.addEventListener('resize', function() {
-    debounce(lazy.checkImages());
+    debounce(lazy.checkImages);
 }, 100, false);
 ```
 ## Options
