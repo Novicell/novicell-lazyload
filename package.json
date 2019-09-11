@@ -1,6 +1,6 @@
 {
   "name": "novicell-lazyload",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Novicell script for lazyloading images.",
   "main": "js/lazy-images.js",
   "scripts": {
