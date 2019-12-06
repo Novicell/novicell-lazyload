@@ -2,7 +2,7 @@
   "name": "novicell-lazyload",
   "version": "2.1.6",
   "description": "Novicell script for lazyloading images.",
-  "main": "js/lazy-images.js",
+  "main": "dist/lazy-images.umd.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
