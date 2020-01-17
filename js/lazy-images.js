@@ -10,10 +10,6 @@ import { dynamicImage } from './novicell.dynamic-image';
 var lastRefreshWidth = 0;
 var refreshWidth = 50;
 
-// Lazysizes config
-window.lazySizesConfig = window.lazySizesConfig || {};
-window.lazySizesConfig.expand = 1000;
-
 /*
  *   Lazyload
  */
