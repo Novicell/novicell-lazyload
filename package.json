@@ -24,19 +24,14 @@
     {
       "name": "Henrik Reinbach Madsen",
       "email": "hrm@novicell.dk"
-    },
-    {
-      "name": "Juozas Rastenis",
-      "email": "jra@novicell.dk"
     }
   ],
   "license": "MIT",
   "dependencies": {
-    "lazysizes": "5.1.1",
+    "lazysizes": "^5.2.2",
     "novicell-debounce": "^2.0.0"
   },
   "devDependencies": {
-    "cssnano": "^4.1.10",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.20"
   }
 }
