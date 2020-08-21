@@ -5,13 +5,12 @@
 * @author Jonas Havmøller & Danni Larsen
 */
 
-// This is a function, and not an object, because it also returns a value.
 export const dynamicImage = function () {
     function getUrl(el) {
-        var pixelInterval = 50;
-        var baseUrl = el.getAttribute('data-src');
-        var heightRatio = el.getAttribute('data-height-ratio');
-        var parentWidth = el.parentNode.innerWidth || el.parentNode.offsetWidth;
+        const pixelInterval = 50;
+        let baseUrl = el.getAttribute('data-src');
+        let heightRatio = el.getAttribute('data-height-ratio');
+        let parentWidth = el.parentNode.innerWidth || el.parentNode.offsetWidth;
         parentWidth = parentWidth !== null ? parentWidth + pixelInterval - (parentWidth % pixelInterval) : null; // round to the nearest 50
         
         if (!heightRatio) {
@@ -20,13 +19,13 @@ export const dynamicImage = function () {
             heightRatio = parentHeight / parentWidth;
         }
        
-        var width = parentWidth;
-        var height = width * heightRatio;
+        let width = parentWidth;
+        let height = width * heightRatio;
 
         baseUrl += width ? nextQuerySign(baseUrl) + "width=" + width : "";
         baseUrl += height !== null ? nextQuerySign(baseUrl) + "height=" + height : "";
 
-        var queryObjStr = el.getAttribute('data-query-obj');
+        const queryObjStr = el.getAttribute('data-query-obj');
         baseUrl = queryUrl(baseUrl, queryObjStr);
 
         return baseUrl;
@@ -38,7 +37,7 @@ export const dynamicImage = function () {
 
     function queryUrl(url, queryObjStr) {
         if (queryObjStr) {
-            var queryObj = JSON.parse(queryObjStr);
+            const queryObj = JSON.parse(queryObjStr);
             
             Object.keys(queryObj).forEach(function(key){
                 url += queryObj[key] !== null ? nextQuerySign(url) + key + "=" + queryObj[key] : "";
