@@ -1,4 +1,5 @@
 'use strict';
+
 /**
 * @name Novicell Dynamic Image
 * @author Jonas Havmøller & Danni Larsen
@@ -7,12 +8,8 @@
 import 'lazysizes';
 import { dynamicImage } from './novicell.dynamic-image';
 
-var lastRefreshWidth = 0;
-var refreshWidth = 50;
-
-/*
- *   Lazyload
- */
+let lastRefreshWidth = 0;
+const refreshWidth = 50;
 
 export default class NovicellLazyLoad {
     constructor({includeWebp = true}) {
@@ -22,27 +19,27 @@ export default class NovicellLazyLoad {
             e.preventDefault = function () {
                 Object.defineProperty(this, 'defaultPrevented', {get: function () {return true;}});
             };
-            const webp = this.includeWebp;
-            
-            var target = e.target;
-            var preventLoad = target.classList.contains('lazyload-measure') || target.classList.contains('lazyload-bg'); 
-            var setMeasuredUrl = target.classList.contains('lazyload-measure');
-            var setSrcSet = target.hasAttribute('data-srcset') && target.hasAttribute('data-query-obj');
-            var setSrc = target.hasAttribute('data-src') && target.hasAttribute('data-query-obj');
+
+            const useWebp = this.includeWebp;
+            const target = e.target;
+            const preventLoad = target.classList.contains('lazyload-measure') || target.classList.contains('lazyload-bg'); 
+            const setMeasuredUrl = target.classList.contains('lazyload-measure');
+            const setSrcSet = target.hasAttribute('data-srcset') && target.hasAttribute('data-query-obj');
+            const setSrc = target.hasAttribute('data-src') && target.hasAttribute('data-query-obj');
         
             if(preventLoad) {
                 e.preventDefault();
             }
         
             if(setMeasuredUrl) {
-                var setBg = target.classList.contains('lazyload-bg');
-                var url = dynamicImage().getUrl(target);
-                isSupportWebP(function(bool) {
-                    if (bool && webp) {
-                        url += "&format=webp"
+                const setBg = target.classList.contains('lazyload-bg');
+                let url = dynamicImage().getUrl(target);
+                isSupportWebP(function(supportWebp) {
+                    if (supportWebp && useWebp) {
+                        url = addFormat(url);
                     }
                     if(setBg) {
-                        target.parentNode.style.backgroundImage = 'url(' + url + ')';   
+                        target.parentNode.style.backgroundImage = `url(${url})`;   
                         target.style.visibility = 'hidden';
                     } else {
                         target.src = url;
@@ -54,40 +51,37 @@ export default class NovicellLazyLoad {
                 var query = target.getAttribute('data-query-obj');
                 var srcset = target.getAttribute('data-srcset').split(',');
                 var src = target.getAttribute('data-src');
-                var newSrcset = [];
-                isSupportWebP(function(bool) {
+                const newSrcset = [];
+                isSupportWebP(function(supportWebp) {
                     srcset.forEach(function(src){
                         src = src.trim();
                         src = src.split(' ');
                         
-                        var url = src[0];
-                        var bp = src[1];
-                        var newSrc = dynamicImage().queryUrl(url, query);
-                        if (bool && webp) {
-                            url += "&format=webp"
+                        let url = src[0];
+                        const bp = src[1];
+                        let newSrc = dynamicImage().queryUrl(url, query);
+                        if (supportWebp && useWebp) {
+                            newSrc = addFormat(newSrc);
                         }
                         // set new srcset
                         newSrcset.push(newSrc + ' ' + bp);
                     });
     
-                    if (bool && webp) {
-                        src += "&format=webp"
-                    }
                     target.setAttribute('srcset', newSrcset.join(', '));
                     target.setAttribute('src', dynamicImage().queryUrl(src, query));
                 });
             }
             else if(setSrc) {
-                var query = target.getAttribute('data-query-obj');
-                var src = target.getAttribute('data-src');
-                var url = dynamicImage().queryUrl(src, query);
+                const query = target.getAttribute('data-query-obj');
+                const src = target.getAttribute('data-src');
+                const url = dynamicImage().queryUrl(src, query);
         
                 target.setAttribute('src', url);
             }
         }
         this.checkImages = function() {
             if (window.innerWidth > lastRefreshWidth + refreshWidth || window.innerWidth < lastRefreshWidth - refreshWidth) {
-                var loadedElements = Array.prototype.slice.call(document.body.querySelectorAll('.lazyloaded'));
+                let loadedElements = Array.prototype.slice.call(document.body.querySelectorAll('.lazyloaded'));
                 if(loadedElements.length > 0) {
                     loadedElements.map(function(el){
                         el.classList.remove('lazyloaded');
@@ -101,15 +95,18 @@ export default class NovicellLazyLoad {
 }
 
 function isSupportWebP(callback) {
-    var webP = new Image();
+    const webP = new Image();
     webP.src = 'data:image/webp;base64,UklGRi4AAABXRUJQVlA4TCEAAAAvAUAAEB8wAiMw' + 'AgSSNtse/cXjxyCCmrYNWPwmHRH9jwMA';
     webP.onload = webP.onerror = function () {
         callback(webP.height === 2);
     };
 }
 
-/*
- *   Eventlisteners
- */
-// document.addEventListener('lazybeforeunveil', NovicellLazyLoad.lazyLoad, true);
-// window.addEventListener('resize', debounce(NovicellLazyLoad.checkImages), 100, false);
+function addFormat(url) {
+    // check if format is already set
+    if(url.includes('format=')) return url;   
+    // add format in start of querystring
+    const urlArr = url.split('?');
+
+    return `${urlArr[0]}?format=webp&${urlArr[1]}`;
+}

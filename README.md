@@ -23,11 +23,11 @@ npm i novicell-lazyload@next
 Import novicell-lazyload as a module in your javascript file that observes the images. Also add debounce from lodash.
 
 ```javascript
-import NovicellLazyLoad from 'novicell-lazyload';
+import NovicellLazyLoad from '../js/lazy-images';
 import debounce from 'lodash/debounce';
 
 const lazy = new NovicellLazyLoad({
-    includeWebp: true // optional  
+    includeWebp: true
 });
 
 document.addEventListener('lazybeforeunveil', function(event) {
@@ -35,11 +35,11 @@ document.addEventListener('lazybeforeunveil', function(event) {
 }, true);
 
 window.addEventListener('resize', function() {
-    debounce(lazy.checkImages);
+    debounce(lazy.checkImages());
 }, 100, false);
 ```
 ## Options
-`includeWebp: true/false` Default true. Optional, but if it's set to true, Novicell-lazyload will still check if the client's browser supports WebP first. 
+`includeWebp: true/false` Default true. Optional, when set to true, Novicell-lazyload will still check if the client's browser supports WebP. 
 
 ## Options
 
@@ -52,6 +52,8 @@ window.lazySizesConfig = {
 ## Implementation
 This script *lazyloads* by swapping the `data-src` or `data-srcset` to an actual `src` or `srcset`.
 For all implementations you should have a `lazyload`-class and `data-query-obj` on the image. Everything inside the data-query-obj is general settings that is applied on every src in the srcset as a querystring".
+
+**NOTE:** Add the `format` before the `quality`, for utilizing the quality feature.
 
 For extra plugins and complete feature list, please reference the [lazysizes documentation](https://github.com/aFarkas/lazysizes/).
 
@@ -78,13 +80,22 @@ This feature will get the size of the parent element, and add it as query string
 If you just want auto height you can add the attribute ´data-height-ratio="0"´
 You can also pass a height-ratio, this will set the size accordingly.
 
-**Useful height ratios**: 
-`0`: Auto height
-`0.5`: Half height as width
-`0.5625`: 16:9 format
-`0.625`: 16:10 format
-`1`: Square image
-`2`: Twice height as width
+#### Useful height ratios: 
+
+`0`: Inherit height from parent 👨‍👦
+
+`0.5`: Landscape image 🖼
+
+`0.5625`: 16:9 format (great for video) 📺
+
+`0.625`: 16:10 format 🖥
+
+`1`: Square image 🔲
+
+`2`: Portait image 📸
+
+
+**NOTE:** If you want to keep the image original height, you can pass `data-query-obj='{"height": "auto"}'`.
 
 ```html
 <img class="lazyload lazyload-measure" data-src="/dist/images/test.jpg" alt="Cool image" data-height-ratio="0" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}' />
