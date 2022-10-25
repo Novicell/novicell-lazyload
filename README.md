@@ -5,10 +5,6 @@
 ![npm downloads](https://img.shields.io/npm/dt/novicell-lazyload.svg?label=npm%20downloads&colorB=blue)
 ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/novicell-lazyload.svg)
 
-## Demo
-
-https://novicell-lazyload.netlify.app
-
 ## Usage
 Written in pure Vanilla JS, depends on [lazysizes](https://github.com/aFarkas/lazysizes/) and some kind of serverside image processor as the [imageprocessor.net](http://imageprocessor.org/imageprocessor-web/imageprocessingmodule/). It ships with examples for easy implementation with the [novicell-frontend setup](https://github.com/Novicell/novicell-frontend).
 

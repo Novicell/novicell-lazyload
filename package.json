@@ -34,8 +34,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "lazysizes": "^5.2.2",
-    "novicell-debounce": "^2.0.0"
+    "lazysizes": "^5.2.2"
   },
   "devDependencies": {
     "vite": "^3.1.8",
