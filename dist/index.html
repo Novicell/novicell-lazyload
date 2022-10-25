@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Novicell Lazyload</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        * { box-sizing: border-box; }
+        html,body { height: 200vh; font-family: sans-serif; }
+        img { max-width: 100%; }
+        section { min-height: 100vh; padding: 50px 20px; background-size: cover; background-position: center; }
+        code { background-color: whitesmoke; color: deeppink; padding: 3px; border-radius: 3px; }
+        ::selection { background: aqua; color: deeppink; }
+    </style>
+  <script type="module" crossorigin src="/novicell-lazyload.js"></script>
+</head>
+
+<body>
+    <section>
+        <h1>Novicell Lazyload</h1>
+        <p>try scrolling down, and images should appear &downarrow;</p>
+        <small>Be aware that this demo doesn't have image processor, that means the image doesn't change dimensions, but you can look at the querystrings, and see it work.</small>
+    </section>
+
+    <section>
+        <h2>Images with a fixed size (lazyload)</h2>
+        <img class="lazyload" data-src="https://naturnok.dk/media/ienmg4oy/dsc03740.jpg?width=1500&height=500" alt="Lazy koala"
+        data-query-obj='{"mode":"crop", "quality":"70", "center": "0.5,0.3"}' />
+    </section>
+
+    <section>
+        <h2>Images with fixed sizes (lazyload)</h2>
+        <p>For images with fixed sizes we recommend using a specific srcset, as this is the fastest.</p>
+        <img class="lazyload" data-src="https://naturnok.dk/media/ienmg4oy/dsc03740.jpg" alt="Lazy koala"
+        data-query-obj='{"mode":"crop", "quality":"70", "center": "0.5,0.3"}'
+        data-srcset="https://naturnok.dk/media/ienmg4oy/dsc03740.jpg?width=1500&height=500 1000w,
+                     https://naturnok.dk/media/ienmg4oy/dsc03740.jpg?width=900&heightratio=0.6 800w,
+                     https://naturnok.dk/media/ienmg4oy/dsc03740.jpg?width=400&heightratio=1 500w"/>
+    </section>
+
+    <section>
+        <h2>Images with variable sizes (lazyload-measure)</h2>
+        <p>For images with variable sizes, eg. a full width banner with a fixed height, or just an image added in the CMS inside a random grid column, we recommend the "measure"-feature.</p>
+        <p>This feature will get the size of the parent element, and add it as query strings for this image.</p>
+    </section>
+    <div>
+        <img class="lazyload lazyload-measure" data-src="https://naturnok.dk/media/4ttlxsvr/flyvende_oern2.jpg" alt="Lazy dog" data-query-obj='{"format": "png", "mode":"crop", "quality":"70", "height": "auto", "center": "0.3,0.8"}'/>
+    </div>
+
+    <section>
+        <h3>Background images (lazyload-bg)</h3>
+        <p>This uses the "measure"-feature only adding the image as a background image on the parent element, instead of an actual <code>&lt;img&gt;</code>-tag.</p>
+
+        <img class="lazyload lazyload-measure lazyload-bg" data-src="https://naturnok.dk/media/4ttlxsvr/flyvende_oern2.jpg" alt="Lazy seal" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}'/>
+    </section>
+
+    
+</body>
+</html>
