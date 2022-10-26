@@ -23,7 +23,7 @@ export default class NovicellLazyLoad {
             };
 
             const useWebp = this.includeWebp;
-            const useRetina = this.includeRetina;
+            const useRetina = this.includeRetina && pixelRatio > 1;
             const target = e.target;
             const preventLoad = target.classList.contains('lazyload-measure') || target.classList.contains('lazyload-bg'); 
             const setMeasuredUrl = target.classList.contains('lazyload-measure');
@@ -150,8 +150,12 @@ function isSupportWebP(callback) {
 }
 
 function getRetinaSizes(url) {
-    const parsedUrl = new URL(url);
-    let params = new URLSearchParams(parsedUrl.search);
+    let parsedUrl = '';
+    let params = new URLSearchParams('');
+    try {        
+        parsedUrl = new URL(url);
+        params = new URLSearchParams(parsedUrl.search);
+    } catch {}
     const orgWidth = params.get('width');
     const orgHeight = params.get('height');
     const retinaWidth = typeof Number(orgWidth) === 'number' ? (Number(orgWidth) * pixelRatio).toString() : orgWidth;
