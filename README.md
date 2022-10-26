@@ -47,7 +47,7 @@ window.addEventListener('resize', debounce(() => {
 
 ```js
 window.lazySizesConfig = {
-    useWebp: true // Boolean (defaults to true). If true is used it will still check if browser supports WebP format and then add it
+    useWebp: true, // Boolean (defaults to true). If true is used it will still check if browser supports WebP format and then add it
     includeRetina: true // Boolean (defaults to true). If true is used it will check the devicePixelRatio and add required srcset by multiplying the height and width with the devicePixelRatio
 }
 ```

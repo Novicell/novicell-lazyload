@@ -300,7 +300,7 @@ class qt {
             const G = E[1];
             let q = lt().queryUrl(S, C);
             if (N && v && (q = Et(q)), A.push(q + " " + G), u) {
-              const F = G.match(/\d+/g), { orgWidth: Y, orgHeight: K, retinaHeight: D, retinaWidth: et } = ut(q), V = F ? G.replace(F, (Number(F) * O).toString()) : G;
+              const F = G.match(/\d+/g), { orgWidth: Y, orgHeight: K, retinaHeight: D, retinaWidth: et } = ut(q), V = typeof F == "number" ? G.replace(F, (Number(F) * O).toString()) : G;
               (Y || K) && A.push(`${X({ url: S, orgWidth: Y, orgHeight: K, retinaHeight: D, retinaWidth: et })} ${V}`);
             }
           }), t.setAttribute("srcset", A.join(", ")), t.setAttribute("src", lt().queryUrl(U, C));
@@ -332,7 +332,7 @@ function Ct(L) {
 function ut(L) {
   const h = new URL(L);
   let f = new URLSearchParams(h.search);
-  const i = f.get("width"), v = f.get("height"), u = i && (Number(i) * O).toString(), t = v && (Number(v) * O).toString();
+  const i = f.get("width"), v = f.get("height"), u = typeof i == "number" ? (Number(i) * O).toString() : i, t = typeof v == "number" ? (Number(v) * O).toString() : v;
   return {
     orgWidth: i,
     orgHeight: v,
