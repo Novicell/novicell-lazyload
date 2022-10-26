@@ -1,10 +1,12 @@
 {
   "name": "novicell-lazyload",
-  "version": "2.2.0",
+  "version": "3.0.6",
   "description": "Novicell script for lazyloading images.",
-  "main": "dist/lazy-images.umd.js",
+  "main": "dist/novicell-lazyload.umd.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite --port 3000 --open",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -24,14 +26,18 @@
     {
       "name": "Henrik Reinbach Madsen",
       "email": "hrm@novicell.dk"
+    },
+    {
+      "name": "Simon Nørlund Eldevig",
+      "email": "sne@novicell.dk"
     }
   ],
   "license": "MIT",
   "dependencies": {
-    "lazysizes": "^5.2.2",
-    "novicell-debounce": "^2.0.0"
+    "lazysizes": "^5.2.2"
   },
   "devDependencies": {
+    "vite": "^3.1.8",
     "lodash": "^4.17.20"
   }
 }

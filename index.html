@@ -22,13 +22,19 @@
     </section>
 
     <section>
+        <h2>Images with a fixed size (lazyload)</h2>
+        <img class="lazyload" data-src="https://cdn.novicell.com/media/media/2pndrn1u/novicecamp-logo-i-video.png?width=1500&height=500" alt="Lazy koala"
+        data-query-obj='{"mode":"crop", "quality":"70", "center": "0.5,0.3"}' />
+    </section>
+
+    <section>
         <h2>Images with fixed sizes (lazyload)</h2>
         <p>For images with fixed sizes we recommend using a specific srcset, as this is the fastest.</p>
-        <img class="lazyload" data-src="https://naturnok.dk/media/ienmg4oy/dsc03740.jpg" alt="Lazy koala"
+        <img class="lazyload" data-src="https://cdn.novicell.com/media/media/2pndrn1u/novicecamp-logo-i-video.png" alt="Lazy koala"
         data-query-obj='{"mode":"crop", "quality":"70", "center": "0.5,0.3"}'
-        data-srcset="https://naturnok.dk/media/ienmg4oy/dsc03740.jpg?width=1500&height=500 1000w,
-                     https://naturnok.dk/media/ienmg4oy/dsc03740.jpg?width=900&heightratio=0.6 800w,
-                     https://naturnok.dk/media/ienmg4oy/dsc03740.jpg?width=400&heightratio=1 500w"/>
+        data-srcset="https://cdn.novicell.com/media/media/2pndrn1u/novicecamp-logo-i-video.png?width=1500&height=500 1000w,
+                     https://cdn.novicell.com/media/media/2pndrn1u/novicecamp-logo-i-video.png?width=900&heightratio=0.6 800w,
+                     https://cdn.novicell.com/media/media/2pndrn1u/novicecamp-logo-i-video.png?width=400&heightratio=1 500w"/>
     </section>
 
     <section>
@@ -37,16 +43,16 @@
         <p>This feature will get the size of the parent element, and add it as query strings for this image.</p>
     </section>
     <div>
-        <img class="lazyload lazyload-measure" data-src="https://naturnok.dk/media/4ttlxsvr/flyvende_oern2.jpg" alt="Lazy dog" data-query-obj='{"format": "png", "mode":"crop", "quality":"70", "height": "auto", "center": "0.3,0.8"}'/>
+        <img class="lazyload lazyload-measure" data-src="https://cdn.novicell.com/media/media/2pndrn1u/novicecamp-logo-i-video.png" alt="Lazy dog" data-query-obj='{"format": "png", "mode":"crop", "quality":"70", "height": "", "center": "0.3,0.8"}'/>
     </div>
 
     <section>
         <h3>Background images (lazyload-bg)</h3>
         <p>This uses the "measure"-feature only adding the image as a background image on the parent element, instead of an actual <code>&lt;img&gt;</code>-tag.</p>
 
-        <img class="lazyload lazyload-measure lazyload-bg" data-src="https://naturnok.dk/media/4ttlxsvr/flyvende_oern2.jpg" alt="Lazy seal" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}'/>
+        <img class="lazyload lazyload-measure lazyload-bg" data-src="https://cdn.novicell.com/media/media/2pndrn1u/novicecamp-logo-i-video.png" alt="Lazy seal" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}'/>
     </section>
-    <script src="../dist/demo.umd.js"></script>
-</body>
 
+    <script type="module" src="/demo.js"></script>
+</body>
 </html>

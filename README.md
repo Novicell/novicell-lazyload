@@ -5,18 +5,17 @@
 ![npm downloads](https://img.shields.io/npm/dt/novicell-lazyload.svg?label=npm%20downloads&colorB=blue)
 ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/novicell-lazyload.svg)
 
-
 ## Usage
 Written in pure Vanilla JS, depends on [lazysizes](https://github.com/aFarkas/lazysizes/) and some kind of serverside image processor as the [imageprocessor.net](http://imageprocessor.org/imageprocessor-web/imageprocessingmodule/). It ships with examples for easy implementation with the [novicell-frontend setup](https://github.com/Novicell/novicell-frontend).
 
 ### Install with npm
 
 ```sh
-npm install novicell-lazyload@next --save
+npm install novicell-lazyload --save
 ```
 Or simply:
 ```sh
-npm i novicell-lazyload@next
+npm i novicell-lazyload
 ```
 
 ## Setup
@@ -27,25 +26,29 @@ import NovicellLazyLoad from '../js/lazy-images';
 import debounce from 'lodash/debounce';
 
 const lazy = new NovicellLazyLoad({
-    includeWebp: true
+    includeWebp: true,
+    includeRetina: true
 });
 
 document.addEventListener('lazybeforeunveil', function(event) {
     lazy.lazyLoad(event);
 }, true);
 
-window.addEventListener('resize', function() {
-    debounce(lazy.checkImages());
-}, 100, false);
+window.addEventListener('resize', debounce(() => {
+    lazy.checkImages();
+}, 100), false);
 ```
 ## Options
 `includeWebp: true/false` Default true. Optional, when set to true, Novicell-lazyload will still check if the client's browser supports WebP. 
+
+`includeRetina: true/false` Default true. Optional, when set to true, Novicell-lazyload will check the `devicePixelRatio` and add required `srcset` by multiplying the `height` and `width` with the `devicePixelRatio`. When using `lazyload-bg` it will add the `srcset` with `image-set` in CSS.
 
 ## Options
 
 ```js
 window.lazySizesConfig = {
-    useWebp: true // Boolean (defaults to true). If true is used it will still check if browser supports WebP format and then add it
+    useWebp: true, // Boolean (defaults to true). If true is used it will still check if browser supports WebP format and then add it
+    includeRetina: true // Boolean (defaults to true). If true is used it will check the devicePixelRatio and add required srcset by multiplying the height and width with the devicePixelRatio
 }
 ```
 
@@ -109,5 +112,21 @@ This uses the "measure"-feature only adding the image as a background image on t
 <img class="lazyload lazyload-measure lazyload-bg" data-src="/dist/images/test.jpg" alt="Cool image" data-query-obj='{"mode":"crop", "quality":"70", "center": "0.8,0.3"}'/>
 ```
 
-## Extension
-For extending the component please reference the [Novicell wiki page 🕮](https://github.com/Novicell/novicell-frontend/wiki/Components-extention).
+## Building and developing
+
+Run the demo project
+```
+npm run dev
+```
+
+Build the package into `dist` folder
+
+```
+npm run build
+```
+
+Preview the production build
+
+```
+npm run preview
+```
