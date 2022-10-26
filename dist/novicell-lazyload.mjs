@@ -1,11 +1,11 @@
 var Mt = { exports: {} };
 (function(L) {
-  (function(v, d) {
-    var i = d(v, v.document, Date);
-    v.lazySizes = i, L.exports && (L.exports = i);
+  (function(g, d) {
+    var i = d(g, g.document, Date);
+    g.lazySizes = i, L.exports && (L.exports = i);
   })(
     typeof window < "u" ? window : {},
-    function(d, i, g) {
+    function(d, i, f) {
       var u, t;
       if (function() {
         var a, r = {
@@ -38,9 +38,9 @@ var Mt = { exports: {} };
           cfg: t,
           noSupport: !0
         };
-      var N = i.documentElement, P = d.HTMLPictureElement, w = "addEventListener", b = "getAttribute", C = d[w].bind(d), o = d.setTimeout, U = d.requestAnimationFrame || o, m = d.requestIdleCallback, W = /^picture$/i, E = ["load", "error", "lazyincluded", "_lazyloaded"], S = {}, G = Array.prototype.forEach, k = function(a, r) {
+      var N = i.documentElement, F = d.HTMLPictureElement, w = "addEventListener", b = "getAttribute", C = d[w].bind(d), o = d.setTimeout, U = d.requestAnimationFrame || o, m = d.requestIdleCallback, W = /^picture$/i, E = ["load", "error", "lazyincluded", "_lazyloaded"], S = {}, G = Array.prototype.forEach, k = function(a, r) {
         return S[r] || (S[r] = new RegExp("(\\s|^)" + r + "(\\s|$)")), S[r].test(a[b]("class") || "") && S[r];
-      }, F = function(a, r) {
+      }, q = function(a, r) {
         k(a, r) || a.setAttribute("class", (a[b]("class") || "").trim() + " " + r);
       }, Y = function(a, r) {
         var s;
@@ -55,7 +55,7 @@ var Mt = { exports: {} };
         return s || (s = {}), s.instance = u, l.initEvent(r, !y, !p), l.detail = s, a.dispatchEvent(l), l;
       }, et = function(a, r) {
         var s;
-        !P && (s = d.picturefill || t.pf) ? (r && r.src && !a[b]("srcset") && a.setAttribute("srcset", r.src), s({ reevaluate: !0, elements: [a] })) : r && r.src && (a.src = r.src);
+        !F && (s = d.picturefill || t.pf) ? (r && r.src && !a[b]("srcset") && a.setAttribute("srcset", r.src), s({ reevaluate: !0, elements: [a] })) : r && r.src && (a.src = r.src);
       }, V = function(a, r) {
         return (getComputedStyle(a, null) || {})[r];
       }, ft = function(a, r, s) {
@@ -83,7 +83,7 @@ var Mt = { exports: {} };
         };
       }, St = function(a) {
         var r, s = 0, y = t.throttleDelay, p = t.ricTimeout, l = function() {
-          r = !1, s = g.now(), a();
+          r = !1, s = f.now(), a();
         }, z = m && p > 49 ? function() {
           m(l, { timeout: p }), p !== t.ricTimeout && (p = t.ricTimeout);
         } : nt(function() {
@@ -91,30 +91,30 @@ var Mt = { exports: {} };
         }, !0);
         return function(c) {
           var h;
-          (c = c === !0) && (p = 33), !r && (r = !0, h = y - (g.now() - s), h < 0 && (h = 0), c || h < 9 ? z() : o(z, h));
+          (c = c === !0) && (p = 33), !r && (r = !0, h = y - (f.now() - s), h < 0 && (h = 0), c || h < 9 ? z() : o(z, h));
         };
       }, vt = function(a) {
         var r, s, y = 99, p = function() {
           r = null, a();
         }, l = function() {
-          var z = g.now() - s;
+          var z = f.now() - s;
           z < y ? o(l, y - z) : (m || p)(p);
         };
         return function() {
-          s = g.now(), r || (r = o(l, y));
+          s = f.now(), r || (r = o(l, y));
         };
       }, gt = function() {
-        var a, r, s, y, p, l, z, c, h, R, q, J, xt = /^img$/i, Lt = /^iframe$/i, Nt = "onscroll" in d && !/(gle|ing)bot/.test(navigator.userAgent), Wt = 0, at = 0, M = 0, Z = -1, ht = function(e) {
+        var a, r, s, y, p, l, z, c, h, R, H, J, xt = /^img$/i, Lt = /^iframe$/i, Nt = "onscroll" in d && !/(gle|ing)bot/.test(navigator.userAgent), Wt = 0, at = 0, M = 0, Z = -1, ht = function(e) {
           M--, (!e || M < 0 || !e.target) && (M = 0);
         }, pt = function(e) {
           return J == null && (J = V(i.body, "visibility") == "hidden"), J || !(V(e.parentNode, "visibility") == "hidden" && V(e, "visibility") == "hidden");
         }, $t = function(e, n) {
-          var f, A = e, x = pt(e);
-          for (c -= n, q += n, h -= n, R += n; x && (A = A.offsetParent) && A != i.body && A != N; )
-            x = (V(A, "opacity") || 1) > 0, x && V(A, "overflow") != "visible" && (f = A.getBoundingClientRect(), x = R > f.left && h < f.right && q > f.top - 1 && c < f.bottom + 1);
+          var v, A = e, x = pt(e);
+          for (c -= n, H += n, h -= n, R += n; x && (A = A.offsetParent) && A != i.body && A != N; )
+            x = (V(A, "opacity") || 1) > 0, x && V(A, "overflow") != "visible" && (v = A.getBoundingClientRect(), x = R > v.left && h < v.right && H > v.top - 1 && c < v.bottom + 1);
           return x;
         }, yt = function() {
-          var e, n, f, A, x, $, B, T, j, O, Q, tt, I = u.elements;
+          var e, n, v, A, x, $, B, T, j, O, Q, tt, I = u.elements;
           if ((y = t.loadMode) && M < 8 && (e = I.length)) {
             for (n = 0, Z++; n < e; n++)
               if (!(!I[n] || I[n]._lazyRace)) {
@@ -122,11 +122,11 @@ var Mt = { exports: {} };
                   it(I[n]);
                   continue;
                 }
-                if ((!(T = I[n][b]("data-expand")) || !($ = T * 1)) && ($ = at), O || (O = !t.expand || t.expand < 1 ? N.clientHeight > 500 && N.clientWidth > 500 ? 500 : 370 : t.expand, u._defEx = O, Q = O * t.expFactor, tt = t.hFac, J = null, at < Q && M < 1 && Z > 2 && y > 2 && !i.hidden ? (at = Q, Z = 0) : y > 1 && Z > 1 && M < 6 ? at = O : at = Wt), j !== $ && (l = innerWidth + $ * tt, z = innerHeight + $, B = $ * -1, j = $), f = I[n].getBoundingClientRect(), (q = f.bottom) >= B && (c = f.top) <= z && (R = f.right) >= B * tt && (h = f.left) <= l && (q || R || h || c) && (t.loadHidden || pt(I[n])) && (r && M < 3 && !T && (y < 3 || Z < 4) || $t(I[n], $))) {
+                if ((!(T = I[n][b]("data-expand")) || !($ = T * 1)) && ($ = at), O || (O = !t.expand || t.expand < 1 ? N.clientHeight > 500 && N.clientWidth > 500 ? 500 : 370 : t.expand, u._defEx = O, Q = O * t.expFactor, tt = t.hFac, J = null, at < Q && M < 1 && Z > 2 && y > 2 && !i.hidden ? (at = Q, Z = 0) : y > 1 && Z > 1 && M < 6 ? at = O : at = Wt), j !== $ && (l = innerWidth + $ * tt, z = innerHeight + $, B = $ * -1, j = $), v = I[n].getBoundingClientRect(), (H = v.bottom) >= B && (c = v.top) <= z && (R = v.right) >= B * tt && (h = v.left) <= l && (H || R || h || c) && (t.loadHidden || pt(I[n])) && (r && M < 3 && !T && (y < 3 || Z < 4) || $t(I[n], $))) {
                   if (it(I[n]), x = !0, M > 9)
                     break;
                 } else
-                  !x && r && !A && M < 4 && Z < 4 && y > 2 && (a[0] || t.preloadAfterLoad) && (a[0] || !T && (q || R || h || c || I[n][b](t.sizesAttr) != "auto")) && (A = a[0] || I[n]);
+                  !x && r && !A && M < 4 && Z < 4 && y > 2 && (a[0] || t.preloadAfterLoad) && (a[0] || !T && (H || R || h || c || I[n][b](t.sizesAttr) != "auto")) && (A = a[0] || I[n]);
               }
             A && !x && it(A);
           }
@@ -136,7 +136,7 @@ var Mt = { exports: {} };
             delete n._lazyCache;
             return;
           }
-          ht(e), F(n, t.loadedClass), Y(n, t.loadingClass), K(n, zt), D(n, "lazyloaded");
+          ht(e), q(n, t.loadedClass), Y(n, t.loadingClass), K(n, zt), D(n, "lazyloaded");
         }, Rt = nt(bt), zt = function(e) {
           Rt({ target: e.target });
         }, _t = function(e, n) {
@@ -146,20 +146,20 @@ var Mt = { exports: {} };
             e.src = n;
           }
         }, wt = function(e) {
-          var n, f = e[b](t.srcsetAttr);
-          (n = t.customMedia[e[b]("data-media") || e[b]("media")]) && e.setAttribute("media", n), f && e.setAttribute("srcset", f);
-        }, It = nt(function(e, n, f, A, x) {
+          var n, v = e[b](t.srcsetAttr);
+          (n = t.customMedia[e[b]("data-media") || e[b]("media")]) && e.setAttribute("media", n), v && e.setAttribute("srcset", v);
+        }, It = nt(function(e, n, v, A, x) {
           var $, B, T, j, O, Q;
-          (O = D(e, "lazybeforeunveil", n)).defaultPrevented || (A && (f ? F(e, t.autosizesClass) : e.setAttribute("sizes", A)), B = e[b](t.srcsetAttr), $ = e[b](t.srcAttr), x && (T = e.parentNode, j = T && W.test(T.nodeName || "")), Q = n.firesLoad || "src" in e && (B || $ || j), O = { target: e }, F(e, t.loadingClass), Q && (clearTimeout(s), s = o(ht, 2500), K(e, zt, !0)), j && G.call(T.getElementsByTagName("source"), wt), B ? e.setAttribute("srcset", B) : $ && !j && (Lt.test(e.nodeName) ? _t(e, $) : e.src = $), x && (B || j) && et(e, { src: $ })), e._lazyRace && delete e._lazyRace, Y(e, t.lazyClass), rt(function() {
+          (O = D(e, "lazybeforeunveil", n)).defaultPrevented || (A && (v ? q(e, t.autosizesClass) : e.setAttribute("sizes", A)), B = e[b](t.srcsetAttr), $ = e[b](t.srcAttr), x && (T = e.parentNode, j = T && W.test(T.nodeName || "")), Q = n.firesLoad || "src" in e && (B || $ || j), O = { target: e }, q(e, t.loadingClass), Q && (clearTimeout(s), s = o(ht, 2500), K(e, zt, !0)), j && G.call(T.getElementsByTagName("source"), wt), B ? e.setAttribute("srcset", B) : $ && !j && (Lt.test(e.nodeName) ? _t(e, $) : e.src = $), x && (B || j) && et(e, { src: $ })), e._lazyRace && delete e._lazyRace, Y(e, t.lazyClass), rt(function() {
             var tt = e.complete && e.naturalWidth > 1;
-            (!Q || tt) && (tt && F(e, "ls-is-cached"), bt(O), e._lazyCache = !0, o(function() {
+            (!Q || tt) && (tt && q(e, "ls-is-cached"), bt(O), e._lazyCache = !0, o(function() {
               "_lazyCache" in e && delete e._lazyCache;
             }, 9)), e.loading == "lazy" && M--;
           }, !0);
         }), it = function(e) {
           if (!e._lazyRace) {
-            var n, f = xt.test(e.nodeName), A = f && (e[b](t.sizesAttr) || e[b]("sizes")), x = A == "auto";
-            (x || !r) && f && (e[b]("src") || e.srcset) && !e.complete && !k(e, t.errorClass) && k(e, t.lazyClass) || (n = D(e, "lazyunveilread").detail, x && ct.updateElem(e, !0, e.offsetWidth), e._lazyRace = !0, M++, It(e, n, x, A, f));
+            var n, v = xt.test(e.nodeName), A = v && (e[b](t.sizesAttr) || e[b]("sizes")), x = A == "auto";
+            (x || !r) && v && (e[b]("src") || e.srcset) && !e.complete && !k(e, t.errorClass) && k(e, t.lazyClass) || (n = D(e, "lazyunveilread").detail, x && ct.updateElem(e, !0, e.offsetWidth), e._lazyRace = !0, M++, It(e, n, x, A, v));
           }
         }, Ut = vt(function() {
           t.loadMode = 3, _();
@@ -167,7 +167,7 @@ var Mt = { exports: {} };
           t.loadMode == 3 && (t.loadMode = 2), Ut();
         }, ot = function() {
           if (!r) {
-            if (g.now() - p < 999) {
+            if (f.now() - p < 999) {
               o(ot, 999);
               return;
             }
@@ -176,12 +176,12 @@ var Mt = { exports: {} };
         };
         return {
           _: function() {
-            p = g.now(), u.elements = i.getElementsByClassName(t.lazyClass), a = i.getElementsByClassName(t.lazyClass + " " + t.preloadClass), C("scroll", _, !0), C("resize", _, !0), C("pageshow", function(e) {
+            p = f.now(), u.elements = i.getElementsByClassName(t.lazyClass), a = i.getElementsByClassName(t.lazyClass + " " + t.preloadClass), C("scroll", _, !0), C("resize", _, !0), C("pageshow", function(e) {
               if (e.persisted) {
                 var n = i.querySelectorAll("." + t.loadingClass);
                 n.length && n.forEach && U(function() {
-                  n.forEach(function(f) {
-                    f.complete && it(f);
+                  n.forEach(function(v) {
+                    v.complete && it(v);
                   });
                 });
               }
@@ -195,10 +195,10 @@ var Mt = { exports: {} };
         };
       }(), ct = function() {
         var a, r = nt(function(l, z, c, h) {
-          var R, q, J;
+          var R, H, J;
           if (l._lazysizesWidth = h, h += "px", l.setAttribute("sizes", h), W.test(z.nodeName || ""))
-            for (R = z.getElementsByTagName("source"), q = 0, J = R.length; q < J; q++)
-              R[q].setAttribute("sizes", h);
+            for (R = z.getElementsByTagName("source"), H = 0, J = R.length; H < J; H++)
+              R[H].setAttribute("sizes", h);
           c.detail.dataAttr || et(l, c.detail);
         }), s = function(l, z, c) {
           var h, R = l.parentNode;
@@ -227,7 +227,7 @@ var Mt = { exports: {} };
         loader: gt,
         init: st,
         uP: et,
-        aC: F,
+        aC: q,
         rC: Y,
         hC: k,
         fire: D,
@@ -241,22 +241,22 @@ const lt = function() {
   function L(i) {
     let u = i.getAttribute("data-src"), t = i.getAttribute("data-height-ratio"), N = i.parentNode.innerWidth || i.parentNode.offsetWidth;
     if (N = N !== null ? N + 50 - N % 50 : null, !t) {
-      var P = i.parentNode.innerHeight || i.parentNode.offsetHeight;
-      P = P !== null ? P + 50 - P % 50 : null, t = P / N;
+      var F = i.parentNode.innerHeight || i.parentNode.offsetHeight;
+      F = F !== null ? F + 50 - F % 50 : null, t = F / N;
     }
     let w = N, b = w * t;
-    u += w ? v(u) + "width=" + w : "", u += b !== null ? v(u) + "height=" + b : "";
+    u += w ? g(u) + "width=" + w : "", u += b !== null ? g(u) + "height=" + b : "";
     const C = i.getAttribute("data-query-obj");
     return u = d(u, C), u;
   }
-  function v(i) {
+  function g(i) {
     return i.indexOf("?") > -1 ? "&" : "?";
   }
-  function d(i, g) {
-    if (g) {
-      const u = JSON.parse(g);
+  function d(i, f) {
+    if (f) {
+      const u = JSON.parse(f);
       Object.keys(u).forEach(function(t) {
-        i += u[t] !== null ? v(i) + t + "=" + u[t] : "";
+        i += u[t] !== null ? g(i) + t + "=" + u[t] : "";
       });
     }
     return i;
@@ -267,28 +267,28 @@ const lt = function() {
   };
 };
 let dt = 0;
-const At = 50, H = window.devicePixelRatio;
+const At = 50, P = window.devicePixelRatio;
 class kt {
-  constructor({ includeWebp: v = !0, includeRetina: d = !0 }) {
-    this.includeWebp = v, this.includeRetina = d, this.lazyLoad = function(i) {
+  constructor({ includeWebp: g = !0, includeRetina: d = !0 }) {
+    this.includeWebp = g, this.includeRetina = d, this.lazyLoad = function(i) {
       i.preventDefault = function() {
         Object.defineProperty(this, "defaultPrevented", { get: function() {
           return !0;
         } });
       };
-      const g = this.includeWebp, u = this.includeRetina && H > 1, t = i.target, N = t.classList.contains("lazyload-measure") || t.classList.contains("lazyload-bg"), P = t.classList.contains("lazyload-measure"), w = t.hasAttribute("data-srcset") && t.hasAttribute("data-query-obj"), b = t.hasAttribute("data-src") && t.hasAttribute("data-query-obj");
-      if (N && i.preventDefault(), P) {
+      const f = this.includeWebp, u = this.includeRetina && P > 1, t = i.target, N = t.classList.contains("lazyload-measure") || t.classList.contains("lazyload-bg"), F = t.classList.contains("lazyload-measure"), w = t.hasAttribute("data-srcset") && t.hasAttribute("data-query-obj"), b = t.hasAttribute("data-src") && t.hasAttribute("data-query-obj");
+      if (N && i.preventDefault(), F) {
         const C = t.classList.contains("lazyload-bg");
         let o = lt().getUrl(t);
         Ct(function(U) {
-          if (U && g && (o = Et(o)), C && u) {
+          if (U && f && (o = Et(o)), C && u) {
             const { orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S } = ut(o);
-            t.parentNode.style.backgroundImage = `url(${o})`, window.CSS.supports("background-image", `-webkit-image-set( url(${o}) 1x, url(${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })}) ${H}x)`) && (t.parentNode.style.backgroundImage = `-webkit-image-set( url(${o}) 1x, url(${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })}) ${H}x)`), window.CSS.supports("background-image", `image-set(url("${o}") 1x, url(${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })}) ${H}x)`) && (t.parentNode.style.backgroundImage = `image-set(url("${o}") 1x, url(${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })}) ${H}x)`), t.style.visibility = "hidden";
+            t.parentNode.style.backgroundImage = `url(${o})`, window.CSS.supports("background-image", `-webkit-image-set( url(${o}) 1x, url(${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })}) ${P}x)`) && (t.parentNode.style.backgroundImage = `-webkit-image-set( url(${o}) 1x, url(${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })}) ${P}x)`), window.CSS.supports("background-image", `image-set(url("${o}") 1x, url(${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })}) ${P}x)`) && (t.parentNode.style.backgroundImage = `image-set(url("${o}") 1x, url(${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })}) ${P}x)`), t.style.visibility = "hidden";
           } else if (C)
             t.parentNode.style.backgroundImage = `url(${o})`, t.style.visibility = "hidden";
           else if (t.src = o, u) {
             const { orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S } = ut(o);
-            (m || W) && t.setAttribute("srcset", `${o} 1x, ${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })} ${H}x`);
+            (m || W) && t.setAttribute("srcset", `${o} 1x, ${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })} ${P}x`);
           }
         });
       } else if (w) {
@@ -299,8 +299,8 @@ class kt {
             let S = E[0];
             const G = E[1];
             let k = lt().queryUrl(S, C);
-            if (W && g && (k = Et(k)), m.push(k + " " + G), u) {
-              const F = G.match(/\d+/g), { orgWidth: Y, orgHeight: K, retinaHeight: D, retinaWidth: et } = ut(k), V = typeof Number(F) == "number" ? G.replace(F, (Number(F) * H).toString()) : G;
+            if (W && f && (k = Et(k)), m.push(k + " " + G), u) {
+              const q = G.match(/\d+/g), { orgWidth: Y, orgHeight: K, retinaHeight: D, retinaWidth: et } = ut(k), V = typeof q < "u" && typeof Number(q) == "number" ? G.replace(q, (Number(q) * P).toString()) : G;
               (Y || K) && m.push(`${X({ url: S, orgWidth: Y, orgHeight: K, retinaHeight: D, retinaWidth: et })} ${V}`);
             }
           }), t.setAttribute("srcset", m.join(", ")), t.setAttribute("src", lt().queryUrl(U, C));
@@ -309,48 +309,48 @@ class kt {
         const C = t.getAttribute("data-query-obj"), o = t.getAttribute("data-src"), U = lt().queryUrl(o, C);
         if (u) {
           const { orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S } = ut(U);
-          (m || W) && t.setAttribute("srcset", `${U} 1x, ${X({ url: U, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })} ${H}x`);
+          (m || W) && t.setAttribute("srcset", `${U} 1x, ${X({ url: U, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })} ${P}x`);
         }
         t.setAttribute("src", U);
       }
     }, this.checkImages = function() {
       if (window.innerWidth > dt + At || window.innerWidth < dt - At) {
         let i = Array.prototype.slice.call(document.body.querySelectorAll(".lazyloaded"));
-        i.length > 0 && i.map(function(g) {
-          g.classList.remove("lazyloaded"), g.classList.add("lazyload");
+        i.length > 0 && i.map(function(f) {
+          f.classList.remove("lazyloaded"), f.classList.add("lazyload");
         }), dt = window.innerWidth;
       }
     };
   }
 }
 function Ct(L) {
-  const v = new Image();
-  v.src = "data:image/webp;base64,UklGRi4AAABXRUJQVlA4TCEAAAAvAUAAEB8wAiMwAgSSNtse/cXjxyCCmrYNWPwmHRH9jwMA", v.onload = v.onerror = function() {
-    L(v.height === 2);
+  const g = new Image();
+  g.src = "data:image/webp;base64,UklGRi4AAABXRUJQVlA4TCEAAAAvAUAAEB8wAiMwAgSSNtse/cXjxyCCmrYNWPwmHRH9jwMA", g.onload = g.onerror = function() {
+    L(g.height === 2);
   };
 }
 function ut(L) {
-  let v = "", d = new URLSearchParams("");
+  let g = "", d = new URLSearchParams("");
   try {
-    v = new URL(L), d = new URLSearchParams(v.search);
+    g = new URL(L), d = new URLSearchParams(g.search);
   } catch {
   }
-  const i = d.get("width"), g = d.get("height"), u = typeof Number(i) == "number" ? (Number(i) * H).toString() : i, t = typeof Number(g) == "number" ? (Number(g) * H).toString() : g;
+  const i = d.get("width"), f = d.get("height"), u = i !== "undefined" && typeof Number(i) == "number" ? (Number(i) * P).toString() : i, t = f !== "undefined" && typeof Number(f) == "number" ? (Number(f) * P).toString() : f;
   return {
     orgWidth: i,
-    orgHeight: g,
+    orgHeight: f,
     retinaWidth: u,
     retinaHeight: t
   };
 }
-function X({ url: L, orgWidth: v, orgHeight: d, retinaHeight: i, retinaWidth: g }) {
-  return L.replace(`width=${v}`, `width=${g}`).replace(`height=${d}`, `height=${i}`);
+function X({ url: L, orgWidth: g, orgHeight: d, retinaHeight: i, retinaWidth: f }) {
+  return L.replace(`width=${g}`, `width=${f}`).replace(`height=${d}`, `height=${i}`);
 }
 function Et(L) {
   if (L.includes("format="))
     return L;
-  const v = L.split("?");
-  return `${v[0]}?format=webp&${v[1]}`;
+  const g = L.split("?");
+  return `${g[0]}?format=webp&${g[1]}`;
 }
 export {
   kt as default
