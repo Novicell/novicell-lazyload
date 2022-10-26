@@ -300,7 +300,7 @@ class qt {
             const G = E[1];
             let q = lt().queryUrl(S, C);
             if (N && v && (q = Et(q)), A.push(q + " " + G), u) {
-              const F = G.match(/\d+/g), { orgWidth: Y, orgHeight: K, retinaHeight: D, retinaWidth: et } = ut(q), V = typeof F == "number" ? G.replace(F, (Number(F) * O).toString()) : G;
+              const F = G.match(/\d+/g), { orgWidth: Y, orgHeight: K, retinaHeight: D, retinaWidth: et } = ut(q), V = F ? G.replace(F, (Number(F) * O).toString()) : G;
               (Y || K) && A.push(`${X({ url: S, orgWidth: Y, orgHeight: K, retinaHeight: D, retinaWidth: et })} ${V}`);
             }
           }), t.setAttribute("srcset", A.join(", ")), t.setAttribute("src", lt().queryUrl(U, C));
