@@ -38,7 +38,7 @@ var Mt = { exports: {} };
           cfg: t,
           noSupport: !0
         };
-      var N = i.documentElement, P = d.HTMLPictureElement, I = "addEventListener", b = "getAttribute", C = d[I].bind(d), o = d.setTimeout, w = d.requestAnimationFrame || o, m = d.requestIdleCallback, W = /^picture$/i, E = ["load", "error", "lazyincluded", "_lazyloaded"], S = {}, G = Array.prototype.forEach, k = function(a, r) {
+      var N = i.documentElement, P = d.HTMLPictureElement, w = "addEventListener", b = "getAttribute", C = d[w].bind(d), o = d.setTimeout, U = d.requestAnimationFrame || o, m = d.requestIdleCallback, W = /^picture$/i, E = ["load", "error", "lazyincluded", "_lazyloaded"], S = {}, G = Array.prototype.forEach, k = function(a, r) {
         return S[r] || (S[r] = new RegExp("(\\s|^)" + r + "(\\s|$)")), S[r].test(a[b]("class") || "") && S[r];
       }, F = function(a, r) {
         k(a, r) || a.setAttribute("class", (a[b]("class") || "").trim() + " " + r);
@@ -46,7 +46,7 @@ var Mt = { exports: {} };
         var s;
         (s = k(a, r)) && a.setAttribute("class", (a[b]("class") || "").replace(s, " "));
       }, K = function(a, r, s) {
-        var y = s ? I : "removeEventListener";
+        var y = s ? w : "removeEventListener";
         s && K(a, r), E.forEach(function(p) {
           a[y](p, r);
         });
@@ -69,7 +69,7 @@ var Mt = { exports: {} };
             c.shift()();
           a = !1;
         }, z = function(c, h) {
-          a && !h ? c.apply(this, arguments) : (p.push(c), r || (r = !0, (i.hidden ? o : w)(l)));
+          a && !h ? c.apply(this, arguments) : (p.push(c), r || (r = !0, (i.hidden ? o : U)(l)));
         };
         return z._lsFlush = l, z;
       }(), nt = function(a, r) {
@@ -114,19 +114,19 @@ var Mt = { exports: {} };
             x = (V(A, "opacity") || 1) > 0, x && V(A, "overflow") != "visible" && (f = A.getBoundingClientRect(), x = R > f.left && h < f.right && q > f.top - 1 && c < f.bottom + 1);
           return x;
         }, yt = function() {
-          var e, n, f, A, x, $, B, T, j, O, Q, tt, U = u.elements;
-          if ((y = t.loadMode) && M < 8 && (e = U.length)) {
+          var e, n, f, A, x, $, B, T, j, O, Q, tt, I = u.elements;
+          if ((y = t.loadMode) && M < 8 && (e = I.length)) {
             for (n = 0, Z++; n < e; n++)
-              if (!(!U[n] || U[n]._lazyRace)) {
-                if (!Nt || u.prematureUnveil && u.prematureUnveil(U[n])) {
-                  it(U[n]);
+              if (!(!I[n] || I[n]._lazyRace)) {
+                if (!Nt || u.prematureUnveil && u.prematureUnveil(I[n])) {
+                  it(I[n]);
                   continue;
                 }
-                if ((!(T = U[n][b]("data-expand")) || !($ = T * 1)) && ($ = at), O || (O = !t.expand || t.expand < 1 ? N.clientHeight > 500 && N.clientWidth > 500 ? 500 : 370 : t.expand, u._defEx = O, Q = O * t.expFactor, tt = t.hFac, J = null, at < Q && M < 1 && Z > 2 && y > 2 && !i.hidden ? (at = Q, Z = 0) : y > 1 && Z > 1 && M < 6 ? at = O : at = Wt), j !== $ && (l = innerWidth + $ * tt, z = innerHeight + $, B = $ * -1, j = $), f = U[n].getBoundingClientRect(), (q = f.bottom) >= B && (c = f.top) <= z && (R = f.right) >= B * tt && (h = f.left) <= l && (q || R || h || c) && (t.loadHidden || pt(U[n])) && (r && M < 3 && !T && (y < 3 || Z < 4) || $t(U[n], $))) {
-                  if (it(U[n]), x = !0, M > 9)
+                if ((!(T = I[n][b]("data-expand")) || !($ = T * 1)) && ($ = at), O || (O = !t.expand || t.expand < 1 ? N.clientHeight > 500 && N.clientWidth > 500 ? 500 : 370 : t.expand, u._defEx = O, Q = O * t.expFactor, tt = t.hFac, J = null, at < Q && M < 1 && Z > 2 && y > 2 && !i.hidden ? (at = Q, Z = 0) : y > 1 && Z > 1 && M < 6 ? at = O : at = Wt), j !== $ && (l = innerWidth + $ * tt, z = innerHeight + $, B = $ * -1, j = $), f = I[n].getBoundingClientRect(), (q = f.bottom) >= B && (c = f.top) <= z && (R = f.right) >= B * tt && (h = f.left) <= l && (q || R || h || c) && (t.loadHidden || pt(I[n])) && (r && M < 3 && !T && (y < 3 || Z < 4) || $t(I[n], $))) {
+                  if (it(I[n]), x = !0, M > 9)
                     break;
                 } else
-                  !x && r && !A && M < 4 && Z < 4 && y > 2 && (a[0] || t.preloadAfterLoad) && (a[0] || !T && (q || R || h || c || U[n][b](t.sizesAttr) != "auto")) && (A = a[0] || U[n]);
+                  !x && r && !A && M < 4 && Z < 4 && y > 2 && (a[0] || t.preloadAfterLoad) && (a[0] || !T && (q || R || h || c || I[n][b](t.sizesAttr) != "auto")) && (A = a[0] || I[n]);
               }
             A && !x && it(A);
           }
@@ -145,12 +145,12 @@ var Mt = { exports: {} };
           } catch {
             e.src = n;
           }
-        }, It = function(e) {
+        }, wt = function(e) {
           var n, f = e[b](t.srcsetAttr);
           (n = t.customMedia[e[b]("data-media") || e[b]("media")]) && e.setAttribute("media", n), f && e.setAttribute("srcset", f);
-        }, Ut = nt(function(e, n, f, A, x) {
+        }, It = nt(function(e, n, f, A, x) {
           var $, B, T, j, O, Q;
-          (O = D(e, "lazybeforeunveil", n)).defaultPrevented || (A && (f ? F(e, t.autosizesClass) : e.setAttribute("sizes", A)), B = e[b](t.srcsetAttr), $ = e[b](t.srcAttr), x && (T = e.parentNode, j = T && W.test(T.nodeName || "")), Q = n.firesLoad || "src" in e && (B || $ || j), O = { target: e }, F(e, t.loadingClass), Q && (clearTimeout(s), s = o(ht, 2500), K(e, zt, !0)), j && G.call(T.getElementsByTagName("source"), It), B ? e.setAttribute("srcset", B) : $ && !j && (Lt.test(e.nodeName) ? _t(e, $) : e.src = $), x && (B || j) && et(e, { src: $ })), e._lazyRace && delete e._lazyRace, Y(e, t.lazyClass), rt(function() {
+          (O = D(e, "lazybeforeunveil", n)).defaultPrevented || (A && (f ? F(e, t.autosizesClass) : e.setAttribute("sizes", A)), B = e[b](t.srcsetAttr), $ = e[b](t.srcAttr), x && (T = e.parentNode, j = T && W.test(T.nodeName || "")), Q = n.firesLoad || "src" in e && (B || $ || j), O = { target: e }, F(e, t.loadingClass), Q && (clearTimeout(s), s = o(ht, 2500), K(e, zt, !0)), j && G.call(T.getElementsByTagName("source"), wt), B ? e.setAttribute("srcset", B) : $ && !j && (Lt.test(e.nodeName) ? _t(e, $) : e.src = $), x && (B || j) && et(e, { src: $ })), e._lazyRace && delete e._lazyRace, Y(e, t.lazyClass), rt(function() {
             var tt = e.complete && e.naturalWidth > 1;
             (!Q || tt) && (tt && F(e, "ls-is-cached"), bt(O), e._lazyCache = !0, o(function() {
               "_lazyCache" in e && delete e._lazyCache;
@@ -159,12 +159,12 @@ var Mt = { exports: {} };
         }), it = function(e) {
           if (!e._lazyRace) {
             var n, f = xt.test(e.nodeName), A = f && (e[b](t.sizesAttr) || e[b]("sizes")), x = A == "auto";
-            (x || !r) && f && (e[b]("src") || e.srcset) && !e.complete && !k(e, t.errorClass) && k(e, t.lazyClass) || (n = D(e, "lazyunveilread").detail, x && ct.updateElem(e, !0, e.offsetWidth), e._lazyRace = !0, M++, Ut(e, n, x, A, f));
+            (x || !r) && f && (e[b]("src") || e.srcset) && !e.complete && !k(e, t.errorClass) && k(e, t.lazyClass) || (n = D(e, "lazyunveilread").detail, x && ct.updateElem(e, !0, e.offsetWidth), e._lazyRace = !0, M++, It(e, n, x, A, f));
           }
-        }, wt = vt(function() {
+        }, Ut = vt(function() {
           t.loadMode = 3, _();
         }), mt = function() {
-          t.loadMode == 3 && (t.loadMode = 2), wt();
+          t.loadMode == 3 && (t.loadMode = 2), Ut();
         }, ot = function() {
           if (!r) {
             if (g.now() - p < 999) {
@@ -179,15 +179,15 @@ var Mt = { exports: {} };
             p = g.now(), u.elements = i.getElementsByClassName(t.lazyClass), a = i.getElementsByClassName(t.lazyClass + " " + t.preloadClass), C("scroll", _, !0), C("resize", _, !0), C("pageshow", function(e) {
               if (e.persisted) {
                 var n = i.querySelectorAll("." + t.loadingClass);
-                n.length && n.forEach && w(function() {
+                n.length && n.forEach && U(function() {
                   n.forEach(function(f) {
                     f.complete && it(f);
                   });
                 });
               }
-            }), d.MutationObserver ? new MutationObserver(_).observe(N, { childList: !0, subtree: !0, attributes: !0 }) : (N[I]("DOMNodeInserted", _, !0), N[I]("DOMAttrModified", _, !0), setInterval(_, 999)), C("hashchange", _, !0), ["focus", "mouseover", "click", "load", "transitionend", "animationend"].forEach(function(e) {
-              i[I](e, _, !0);
-            }), /d$|^c/.test(i.readyState) ? ot() : (C("load", ot), i[I]("DOMContentLoaded", _), o(ot, 2e4)), u.elements.length ? (yt(), rt._lsFlush()) : _();
+            }), d.MutationObserver ? new MutationObserver(_).observe(N, { childList: !0, subtree: !0, attributes: !0 }) : (N[w]("DOMNodeInserted", _, !0), N[w]("DOMAttrModified", _, !0), setInterval(_, 999)), C("hashchange", _, !0), ["focus", "mouseover", "click", "load", "transitionend", "animationend"].forEach(function(e) {
+              i[w](e, _, !0);
+            }), /d$|^c/.test(i.readyState) ? ot() : (C("load", ot), i[w]("DOMContentLoaded", _), o(ot, 2e4)), u.elements.length ? (yt(), rt._lsFlush()) : _();
           },
           checkElems: _,
           unveil: it,
@@ -244,8 +244,8 @@ const lt = function() {
       var P = i.parentNode.innerHeight || i.parentNode.offsetHeight;
       P = P !== null ? P + 50 - P % 50 : null, t = P / N;
     }
-    let I = N, b = I * t;
-    u += I ? v(u) + "width=" + I : "", u += b !== null ? v(u) + "height=" + b : "";
+    let w = N, b = w * t;
+    u += w ? v(u) + "width=" + w : "", u += b !== null ? v(u) + "height=" + b : "";
     const C = i.getAttribute("data-query-obj");
     return u = d(u, C), u;
   }
@@ -276,12 +276,12 @@ class kt {
           return !0;
         } });
       };
-      const g = this.includeWebp, u = this.includeRetina && H > 1, t = i.target, N = t.classList.contains("lazyload-measure") || t.classList.contains("lazyload-bg"), P = t.classList.contains("lazyload-measure"), I = t.hasAttribute("data-srcset") && t.hasAttribute("data-query-obj"), b = t.hasAttribute("data-src") && t.hasAttribute("data-query-obj");
+      const g = this.includeWebp, u = this.includeRetina && H > 1, t = i.target, N = t.classList.contains("lazyload-measure") || t.classList.contains("lazyload-bg"), P = t.classList.contains("lazyload-measure"), w = t.hasAttribute("data-srcset") && t.hasAttribute("data-query-obj"), b = t.hasAttribute("data-src") && t.hasAttribute("data-query-obj");
       if (N && i.preventDefault(), P) {
         const C = t.classList.contains("lazyload-bg");
         let o = lt().getUrl(t);
-        Ct(function(w) {
-          if (w && g && (o = Et(o)), C && u) {
+        Ct(function(U) {
+          if (U && g && (o = Et(o)), C && u) {
             const { orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S } = ut(o);
             t.parentNode.style.backgroundImage = `url(${o})`, window.CSS.supports("background-image", `-webkit-image-set( url(${o}) 1x, url(${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })}) ${H}x)`) && (t.parentNode.style.backgroundImage = `-webkit-image-set( url(${o}) 1x, url(${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })}) ${H}x)`), window.CSS.supports("background-image", `image-set(url("${o}") 1x, url(${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })}) ${H}x)`) && (t.parentNode.style.backgroundImage = `image-set(url("${o}") 1x, url(${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })}) ${H}x)`), t.style.visibility = "hidden";
           } else if (C)
@@ -291,8 +291,8 @@ class kt {
             (m || W) && t.setAttribute("srcset", `${o} 1x, ${X({ url: o, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })} ${H}x`);
           }
         });
-      } else if (I) {
-        const C = t.getAttribute("data-query-obj"), o = t.getAttribute("data-srcset").split(","), w = t.getAttribute("data-src"), m = [];
+      } else if (w) {
+        const C = t.getAttribute("data-query-obj"), o = t.getAttribute("data-srcset").split(","), U = t.getAttribute("data-src"), m = [];
         Ct(function(W) {
           o.forEach(function(E) {
             E = E.trim(), E = E.split(" ");
@@ -303,15 +303,15 @@ class kt {
               const F = G.match(/\d+/g), { orgWidth: Y, orgHeight: K, retinaHeight: D, retinaWidth: et } = ut(k), V = typeof Number(F) == "number" ? G.replace(F, (Number(F) * H).toString()) : G;
               (Y || K) && m.push(`${X({ url: S, orgWidth: Y, orgHeight: K, retinaHeight: D, retinaWidth: et })} ${V}`);
             }
-          }), t.setAttribute("srcset", m.join(", ")), t.setAttribute("src", lt().queryUrl(w, C));
+          }), t.setAttribute("srcset", m.join(", ")), t.setAttribute("src", lt().queryUrl(U, C));
         });
       } else if (b) {
-        const C = t.getAttribute("data-query-obj"), o = t.getAttribute("data-src"), w = lt().queryUrl(o, C);
+        const C = t.getAttribute("data-query-obj"), o = t.getAttribute("data-src"), U = lt().queryUrl(o, C);
         if (u) {
-          const { orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S } = ut(w);
-          (m || W) && t.setAttribute("srcset", `${w} 1x, ${X({ url: w, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })} ${H}x`);
+          const { orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S } = ut(U);
+          (m || W) && t.setAttribute("srcset", `${U} 1x, ${X({ url: U, orgWidth: m, orgHeight: W, retinaHeight: E, retinaWidth: S })} ${H}x`);
         }
-        t.setAttribute("src", w);
+        t.setAttribute("src", U);
       }
     }, this.checkImages = function() {
       if (window.innerWidth > dt + At || window.innerWidth < dt - At) {
@@ -344,7 +344,7 @@ function ut(L) {
   };
 }
 function X({ url: L, orgWidth: v, orgHeight: d, retinaHeight: i, retinaWidth: g }) {
-  return L.replace(v, g).replace(d, i);
+  return L.replace(`width=${v}`, `width=${g}`).replace(`height=${d}`, `height=${i}`);
 }
 function Et(L) {
   if (L.includes("format="))
