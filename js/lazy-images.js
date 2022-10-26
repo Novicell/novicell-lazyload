@@ -170,7 +170,7 @@ function getRetinaSizes(url) {
 }
 
 function getRetinaSrcSet({ url, orgWidth, orgHeight, retinaHeight, retinaWidth }) {
-    return url.replace(orgWidth, retinaWidth).replace(orgHeight, retinaHeight);
+    return url.replace(`width=${orgWidth}`, `width=${retinaWidth}`).replace(`height=${orgHeight}`, `height=${retinaHeight}`);
 }
 
 function addFormat(url) {
