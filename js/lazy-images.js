@@ -100,7 +100,7 @@ export default class NovicellLazyLoad {
                         if (useRetina) {
                             const sizeOrDensisty = bp.match(/\d+/g);
                             const { orgWidth, orgHeight, retinaHeight, retinaWidth } = getRetinaSizes(newSrc);
-                            const newSizeOrDensisty = typeof sizeOrDensisty === 'number' ? bp.replace(sizeOrDensisty, (Number(sizeOrDensisty) * pixelRatio).toString()) : bp;
+                            const newSizeOrDensisty = sizeOrDensisty ? bp.replace(sizeOrDensisty, (Number(sizeOrDensisty) * pixelRatio).toString()) : bp;
                             if (orgWidth || orgHeight) {
                                 newSrcset.push(`${getRetinaSrcSet({url, orgWidth, orgHeight, retinaHeight, retinaWidth})} ${newSizeOrDensisty}`);
                             }
